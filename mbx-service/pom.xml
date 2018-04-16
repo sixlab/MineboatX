@@ -5,14 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.sixlab.mineboatx</groupId>
-    <artifactId>MineboatX</artifactId>
+    <artifactId>mbx-service</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>mbx-base</module>
-        <module>mbx-service</module>
-        <module>mbx-web</module>
     </modules>
 
 </project>
