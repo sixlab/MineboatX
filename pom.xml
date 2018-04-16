@@ -9,5 +9,8 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>mbx-web</module>
+    </modules>
 
 </project>
