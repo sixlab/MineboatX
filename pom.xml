@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>mbx-base</module>
+        <module>mbx-service</module>
         <module>mbx-web</module>
     </modules>
 
