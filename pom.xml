@@ -9,10 +9,22 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <developers>
+        <developer>
+            <id>Patrick</id>
+            <name>Patrick Root</name>
+            <email>root@sixlab.cn</email>
+            <roles>
+                <role>Project Creator</role>
+            </roles>
+        </developer>
+    </developers>
+
     <modules>
-        <module>mbx-base</module>
+        <module>mbx-base-parent</module>
         <module>mbx-service</module>
         <module>mbx-web</module>
+        <module>mbx-base-core</module>
     </modules>
 
 </project>
