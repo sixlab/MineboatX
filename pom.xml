@@ -22,9 +22,12 @@
 
     <modules>
         <module>mbx-base-parent</module>
+        <module>mbx-core-beans</module>
+        <module>mbx-core-common</module>
+        <module>mbx-core-dao</module>
+        <module>mbx-handle</module>
         <module>mbx-service</module>
         <module>mbx-web</module>
-        <module>mbx-base-core</module>
     </modules>
 
 </project>

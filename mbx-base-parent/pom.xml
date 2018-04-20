@@ -23,11 +23,44 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <version.jjwt>0.9.0</version.jjwt>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${version.jjwt}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>cn.sixlab.mineboatx</groupId>
+                <artifactId>mbx-core-beans</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.sixlab.mineboatx</groupId>
+                <artifactId>mbx-core-dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.sixlab.mineboatx</groupId>
+                <artifactId>mbx-core-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.sixlab.mineboatx</groupId>
+                <artifactId>mbx-service-user</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.sixlab.mineboatx</groupId>
+                <artifactId>mbx-handle-user</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

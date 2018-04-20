@@ -1,0 +1,21 @@
+server:
+  port: 18080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mbx?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=GMT%2b8
+    username: root
+    password: root
+
+
+mbx:
+  jwt:
+    header: 12
+    secret: 12
+    expiration: 12
+    tokenHead: 12

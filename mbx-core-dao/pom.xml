@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>mbx-base-parent</artifactId>
+        <groupId>cn.sixlab.mineboatx</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../mbx-base-parent</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mbx-core-dao</artifactId>
+    <packaging>jar</packaging>
+
+    <name>mbx-core-dao</name>
+    <description>Dao module for MineboatX.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.sixlab.mineboatx</groupId>
+            <artifactId>mbx-core-beans</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

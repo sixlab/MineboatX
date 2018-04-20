@@ -9,6 +9,9 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>mbx-service</name>
+    <description>Service module for MineboatX.</description>
+
     <modules>
     </modules>
 
