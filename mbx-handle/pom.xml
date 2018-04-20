@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.sixlab.mineboatx</groupId>
-    <artifactId>mbx-service</artifactId>
+    <artifactId>mbx-handle</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>mbx-service</name>
-    <description>Service module for MineboatX.</description>
+    <name>mbx-handle</name>
+    <description>Handle module for MineboatX.</description>
 
     <modules>
     </modules>
-
+    
 </project>
