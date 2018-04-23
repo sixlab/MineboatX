@@ -3,15 +3,19 @@
 [![输开源协议](https://img.shields.io/badge/License-MIT-brightgreen.svg "MIT")](https://opensource.org/licenses/mit-license.php)
 ![image](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-Mineboat 是一个前后端分离的框架。
+MineboatX 项目是 [Mineboat](https://github.com/PatrickRoot/Mineboat) 项目的一部分，是 Mineboat 项目的服务器端实现。
 
-后端基于 SpringBoot 技术栈，前端基于 Vue 技术栈。 
+Mineboat 是一个前后端分离的框架，目的是实现一个**非分布式**的简单框架。
 
-Mineboat 致力于达成一个目标：简单快速的部署一个网站，节省框架搭建时间，让注意力集中到功能逻辑实现上面。 
+Mineboat 基于这样一个需求：当需要搭建一个简单的网站的时候，希望能够快速上线，不需要过多的配置和框架的搭建。
+
+Mineboat 的后端基于 SpringBoot 技术栈，前端基于 Vue 技术栈。 
 
 Mineboat 的名称分别是 mine 和 boat 两个单词，mine 来源于 Minecraft 游戏，boat 发音与 boot 类似。
 
-希望 Mineboat 成为一只乘风破浪的小船，装满代码，直挂云帆济沧海。
+MineboatX 的 X 意味着这是服务器端代码**。
+
+希望 Mineboat 成为一只乘风破浪的小船，简单好用，装满代码，直挂云帆济沧海。
 
 
 ## 已完成
@@ -19,15 +23,15 @@ Mineboat 的名称分别是 mine 和 boat 两个单词，mine 来源于 Minecraf
 - [x] 建立 Git 仓库并初始化
 - [ ] 初步完成模块的划分
 
+## TODO
+
+- [ ] 初步完成模块的划分
+- [ ] 登录、用户模块
+
 ## 计划
 
 - 完成基于 Spring Boot 的后台基础框架项目：[MineboatX](https://github.com/PatrickRoot/MineboatX)。
 - 完成基于 Vue 和 Element-UI 的前端基础框架项目：[Mineboat](https://github.com/PatrickRoot/Mineboat)。
-
-## TODO
-
-- 完成的服务器端框架
-- 完整的前端框架
 
 ## 技术选型
 
