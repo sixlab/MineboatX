@@ -15,5 +15,5 @@ import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.dao.BaseRepository;
 
 public interface UserRepository extends BaseRepository<MbxUser, Integer> {
-    MbxUser getByUsername(String usernmae);
+    MbxUser getByUsername(String username);
 }

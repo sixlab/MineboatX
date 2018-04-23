@@ -22,10 +22,14 @@ public class MbxUser implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
+    private Character deleted;
+    private Timestamp insertTime;
+
     private String username;
     private String password;
-    private Timestamp lastLoginTime;
-    private Timestamp insertTime;
+    private String email;
+    private String phone;
+    private String status;
 
     public Integer getId() {
         return id;
@@ -33,6 +37,22 @@ public class MbxUser implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Character getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Character deleted) {
+        this.deleted = deleted;
+    }
+
+    public Timestamp getInsertTime() {
+        return insertTime;
+    }
+
+    public void setInsertTime(Timestamp insertTime) {
+        this.insertTime = insertTime;
     }
 
     public String getUsername() {
@@ -51,19 +71,27 @@ public class MbxUser implements Serializable {
         this.password = password;
     }
 
-    public Timestamp getLastLoginTime() {
-        return lastLoginTime;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLastLoginTime(Timestamp lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Timestamp getInsertTime() {
-        return insertTime;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setInsertTime(Timestamp insertTime) {
-        this.insertTime = insertTime;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

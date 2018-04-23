@@ -12,6 +12,7 @@
 package cn.sixlab.mbx.service.user;
 
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
+import cn.sixlab.mbx.core.beans.entity.MbxUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,19 +41,17 @@ public class JWTUserDetailsService implements UserDetailsService {
         if (null == user) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
-//            List<GrantedAuthority> authorityList;
-//
-//            if (CollectionUtils.isEmpty(roleList)) {
-//                authorityList = new ArrayList<>();
-//                authorityList.add(new SimpleGrantedAuthority("USER"));
-//            } else {
-//                authorityList = roleList.stream()
-//                        .map(msxUserRole -> new SimpleGrantedAuthority(msxUserRole.getRole()))
-//                        .collect(Collectors.toList());
-//            }
+            List<MbxUserRole> userRoleList = service.getUserRole(user.getId());
 
-            List<GrantedAuthority> authorityList = new ArrayList<>();
-            authorityList.add(new SimpleGrantedAuthority("USER"));
+            List<GrantedAuthority> authorityList;
+            if (CollectionUtils.isEmpty(userRoleList)) {
+                authorityList = new ArrayList<>();
+                authorityList.add(new SimpleGrantedAuthority("USER"));
+            } else {
+                authorityList = userRoleList.stream()
+                        .map(msxUserRole -> new SimpleGrantedAuthority(msxUserRole.getRoleCode()))
+                        .collect(Collectors.toList());
+            }
 
             return new User(
                     username, user.getPassword(),
