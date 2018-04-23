@@ -6,14 +6,16 @@
  * For more information, please see
  * https://sixlab.cn/
  *
- * @time: 2018-04-20 11:51
+ * @time: 2018-04-23 14:21
  * @author: Patrick <root@sixlab.cn>
  */
 package cn.sixlab.mbx.core.dao.repository;
 
-import cn.sixlab.mbx.core.beans.entity.MbxUser;
+import cn.sixlab.mbx.core.beans.entity.MbxUserRole;
 import cn.sixlab.mbx.core.dao.BaseRepository;
 
-public interface UserRepository extends BaseRepository<MbxUser, Integer> {
-    MbxUser getByUsername(String username);
+import java.util.List;
+
+public interface UserRoleRepository extends BaseRepository<MbxUserRole, Integer> {
+    List<MbxUserRole> findAllByUserId(Integer userId);
 }

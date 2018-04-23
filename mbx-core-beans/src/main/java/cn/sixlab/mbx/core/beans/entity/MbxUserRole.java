@@ -6,7 +6,7 @@
  * For more information, please see
  * https://sixlab.cn/
  *
- * @time: 2018-04-20 11:47
+ * @time: 2018-04-23 13:55
  * @author: Patrick <root@sixlab.cn>
  */
 package cn.sixlab.mbx.core.beans.entity;
@@ -18,18 +18,18 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-public class MbxUser implements Serializable {
+public class MbxUserRole implements Serializable {
+
     @Id
     @GeneratedValue
     private Integer id;
     private Character deleted;
     private Timestamp insertTime;
 
-    private String username;
-    private String password;
-    private String email;
-    private String phone;
-    private String status;
+    private Integer userId;
+    private Integer roleId;
+    private String roleCode;
+    private String roleName;
 
     public Integer getId() {
         return id;
@@ -55,43 +55,35 @@ public class MbxUser implements Serializable {
         this.insertTime = insertTime;
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getRoleCode() {
+        return roleCode;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }
