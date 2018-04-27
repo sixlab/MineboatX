@@ -109,7 +109,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring()
                 .antMatchers("/static/**")
-                .antMatchers("/logo.png", "/**/favicon.ico")
+                .antMatchers("/logo.png", "/favicon.ico")
         ;
     }
 }
