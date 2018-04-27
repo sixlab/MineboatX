@@ -79,9 +79,9 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
     // 用户成功登录后，这个方法会被调用，我们在这个方法里生成token
     @Override
     protected void successfulAuthentication(HttpServletRequest req,
-                                            HttpServletResponse res,
+                                            HttpServletResponse resp,
                                             FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
+                                            Authentication auth) throws IOException {
 
         String username = ((User) auth.getPrincipal()).getUsername();
         long expiration = System.currentTimeMillis() + jwtParam.getJwtExpiration();
@@ -94,17 +94,17 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 
         token = jwtParam.getJwtTokenHead() + token;
 
-        res.addHeader(jwtParam.getJwtHeader(), token);
+        resp.addHeader(jwtParam.getJwtHeader(), token);
 
         ModelJson json = new ModelJson();
         Map data = new HashMap();
         data.put("token", token);
         data.put("expiration", expiration);
 
-        res.setCharacterEncoding("UTF-8");
-        res.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
 
-        PrintWriter writer = res.getWriter();
+        PrintWriter writer = resp.getWriter();
         writer.write(json.setData(data).toString());
         writer.flush();
         writer.close();

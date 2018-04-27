@@ -53,6 +53,50 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
+        logParam(request);
+
+
+        //验证
+        String token = TokenUtil.readToken(request, jwtParam.getJwtHeader(), jwtParam.getJwtSecret());
+
+        //if(WebUtil.checkToken(token, jwtParam.getJwtTokenHead(), jwtParam.getJwtSecret(), request.getRequestURI())){
+        //    chain.doFilter(request, response);
+        //    logger.info("登录失败，token：" + token);
+        //    return;
+        //}
+
+        if (StringUtils.isEmpty(token)) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+        if (token.startsWith(jwtParam.getJwtTokenHead())) {
+            try {
+                UsernamePasswordAuthenticationToken authentication = getAuthentication(token);
+
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                chain.doFilter(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+                chain.doFilter(request, response);
+            }
+        }
+
+//        String fakeMD5 = DigestUtil.fakeMD5(request.getRequestURI(), jwtParam.getJwtSecret());
+        String fakeMD5 = request.getRequestURI() + jwtParam.getJwtSecret();
+        if (fakeMD5.equals(token)) {
+            String username = request.getParameter("username");
+            if (StringUtils.hasLength(username)) {
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                chain.doFilter(request, response);
+            }
+        }
+
+        return;
+    }
+
+    private void logParam(HttpServletRequest request) {
         //输出参数
         String result = "\n>>>>>\n";
         //try {
@@ -93,45 +137,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         result += "\n<<<<<\n";
 
         logger.info(result);
-
-        //验证
-        String token = TokenUtil.readToken(request, jwtParam.getJwtHeader(), jwtParam.getJwtSecret());
-
-        //if(WebUtil.checkToken(token, jwtParam.getJwtTokenHead(), jwtParam.getJwtSecret(), request.getRequestURI())){
-        //    chain.doFilter(request, response);
-        //    logger.info("登录失败，token：" + token);
-        //    return;
-        //}
-
-        if (StringUtils.isEmpty(token)) {
-            chain.doFilter(request, response);
-            return;
-        }
-
-        if (token.startsWith(jwtParam.getJwtTokenHead())) {
-            try {
-                UsernamePasswordAuthenticationToken authentication = getAuthentication(token);
-
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                chain.doFilter(request, response);
-            } catch (Exception e) {
-                e.printStackTrace();
-                chain.doFilter(request, response);
-            }
-        }
-
-//        String fakeMD5 = DigestUtil.fakeMD5(request.getRequestURI(), jwtParam.getJwtSecret());
-        String fakeMD5 = request.getRequestURI() + jwtParam.getJwtSecret();
-        if (fakeMD5.equals(token)) {
-            String username = request.getParameter("username");
-            if (StringUtils.hasLength(username)) {
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                chain.doFilter(request, response);
-            }
-        }
-
-        return;
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(String token) {

@@ -16,13 +16,16 @@ import org.springframework.http.HttpMethod;
 import javax.servlet.http.HttpServletRequest;
 
 public class MyCorsUtils {
-    public MyCorsUtils() {
-    }
 
     public static boolean isCorsRequest(HttpServletRequest request) {
         String origin = request.getHeader("Origin");
 
-        return origin != null && origin.toLowerCase().endsWith(".sixlab.cn");
+        if (null != origin) {
+            origin = origin.toLowerCase();
+            return origin.endsWith(".sixlab.cn") || origin.endsWith("://sixlab.cn");
+        }
+
+        return false;
     }
 
     public static boolean isPreFlightRequest(HttpServletRequest request) {

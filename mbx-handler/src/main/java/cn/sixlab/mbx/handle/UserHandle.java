@@ -9,7 +9,7 @@
  * @time: 2018-04-20 12:23
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.handle.user;
+package cn.sixlab.mbx.handle;
 
 import cn.sixlab.mbx.core.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
