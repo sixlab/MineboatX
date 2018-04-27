@@ -20,7 +20,10 @@ public class ModelJson extends ModelMap {
     Object data = null;
 
     public ModelJson(){
-
+        put("status", status);
+        put("success", success);
+        put("message", message);
+        put("data", data);
     }
 
     public Integer getStatus() {
@@ -29,6 +32,7 @@ public class ModelJson extends ModelMap {
 
     public ModelJson setStatus(Integer status) {
         this.status = status;
+        put("status", status);
         return this;
     }
 
@@ -38,6 +42,7 @@ public class ModelJson extends ModelMap {
 
     public ModelJson setSuccess(Boolean success) {
         this.success = success;
+        put("success", success);
         return this;
     }
 
@@ -47,6 +52,7 @@ public class ModelJson extends ModelMap {
 
     public ModelJson setMessage(String message) {
         this.message = message;
+        put("message", message);
         return this;
     }
 
@@ -56,6 +62,7 @@ public class ModelJson extends ModelMap {
 
     public ModelJson setData(Object data) {
         this.data = data;
+        put("data", data);
         return this;
     }
 }

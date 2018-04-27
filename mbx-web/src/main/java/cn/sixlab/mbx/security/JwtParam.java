@@ -17,16 +17,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtParam {
 
-    @Value("${msb.jwt.header}")
+    @Value("${mbx.jwt.header}")
     private String jwtHeader;
 
-    @Value("${msb.jwt.secret}")
+    @Value("${mbx.jwt.secret}")
     private String jwtSecret;
 
-    @Value("${msb.jwt.expiration}")
+    @Value("${mbx.jwt.expiration}")
     private int jwtExpiration;
 
-    @Value("${msb.jwt.tokenHead}")
+    @Value("${mbx.jwt.tokenHead}")
     private String jwtTokenHead;
 
     public String getJwtHeader() {

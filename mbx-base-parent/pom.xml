@@ -52,13 +52,13 @@
 
             <dependency>
                 <groupId>cn.sixlab.mineboatx</groupId>
-                <artifactId>mbx-service-user</artifactId>
+                <artifactId>mbx-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.sixlab.mineboatx</groupId>
-                <artifactId>mbx-handle-user</artifactId>
+                <artifactId>mbx-handler</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

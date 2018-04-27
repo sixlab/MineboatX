@@ -11,7 +11,7 @@
  */
 package cn.sixlab.mbx.security;
 
-import cn.sixlab.mbx.service.user.JWTUserDetailsService;
+import cn.sixlab.mbx.service.JWTUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -72,19 +72,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //对于跨域的 Preflight 不做拦截
                 .requestMatchers(MyCorsUtils::isPreFlightRequest).permitAll()
 
-                // 允许对于网站静态资源的无授权访问
-                .antMatchers(
-                        "/*",
-                        "/**/pub/**",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).permitAll()
+                // 对根目录下的资源无授权访问
+                // 对于静态资源可无授权访问
+                // 对于静态资源可无授权访问
+                .antMatchers("/**/auth/**").authenticated()
 
-                // 除上面外的所有请求全部需要鉴权认证
-                .anyRequest().authenticated();
+                // 除上面外的所有请求全部不需要授权
+                .anyRequest().permitAll();
 
-        Filter loginFilter = new JwtAuthenticationFilter(authenticationManager()).setJwtParam(jwtParam);
+        Filter loginFilter = new JwtLoginFilter(authenticationManager()).setJwtParam(jwtParam);
         Filter authenticationFilter = new JwtAuthenticationFilter(authenticationManager()).setJwtParam(jwtParam);
 
         //添加 登录过滤器 和 校验过滤器
@@ -110,13 +106,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring()
                 .antMatchers("/static/**")
-                .antMatchers("/css/**")
-                .antMatchers("/trd/**")
-                .antMatchers("/js/**", "/main.js")
-                .antMatchers("/img/**", "/logo.png", "/**/favicon.ico")
+                .antMatchers("/logo.png", "/**/favicon.ico")
         ;
     }
 }
