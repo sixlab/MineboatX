@@ -14,7 +14,7 @@ package cn.sixlab.mbx.handle;
 import cn.sixlab.mbx.core.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.common.base.BaseHandler;
-import cn.sixlab.mbx.service.user.UserService;
+import cn.sixlab.mbx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
