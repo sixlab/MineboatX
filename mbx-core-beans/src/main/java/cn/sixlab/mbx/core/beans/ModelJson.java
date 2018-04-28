@@ -15,7 +15,7 @@ import org.springframework.ui.ModelMap;
 
 public class ModelJson extends ModelMap {
     Integer status = 0;
-    Boolean success = false;
+    Boolean success = true;
     String message = "";
     Object data = null;
 

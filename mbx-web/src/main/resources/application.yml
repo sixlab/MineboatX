@@ -13,6 +13,21 @@ spring:
     url: jdbc:mysql://localhost:3306/mbx?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=GMT%2b8
     username: root
     password: root
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+#    password:
+    lettuce:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1ms
+#    sentinel:
+#      master:
+#      nodes:
+    timeout: 0ms
   thymeleaf:
     cache: false
     mode: HTML5
@@ -25,7 +40,7 @@ spring:
 
 mbx:
   jwt:
-    header: 12
-    secret: 12
-    expiration: 12
-    tokenHead: 12
+    header: Authorization
+    secret: Sixlab's Mbx
+    expiration: 604800000
+    bearer: Bearer|
