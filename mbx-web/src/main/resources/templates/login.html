@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="Mineboat 登录"/>
 
-    <link th:href="@{/static/css/index.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/static/css/login.css}" rel="stylesheet" type="text/css" media="all"/>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script th:src="@{/static/js/login.js}"></script>
 </head>
 <style>
     ::-webkit-input-placeholder { /* WebKit browsers */
@@ -41,18 +43,20 @@
             <div class="login-ic">
                 <i></i>
                 <input type="text" value="用户名" onFocus="this.value = '';"
+                       id="username"
                        onBlur="if (this.value == '') {this.value = '用户名';}"/>
                 <div class="clear"></div>
             </div>
             <div class="login-ic">
                 <i class="icon"></i>
                 <input type="password" value="密码" onFocus="this.value = '';"
+                       id="password"
                        onBlur="if (this.value == '') {this.value = '密码';}"/>
                 <div class="clear"></div>
             </div>
 
             <div class="log-bwn">
-                <input type="submit" value="Login">
+                <input type="submit" id="submitBtn" value="Login">
             </div>
         </form>
     </div>

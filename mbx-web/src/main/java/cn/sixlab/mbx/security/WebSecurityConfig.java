@@ -35,9 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     JWTUserDetailsService userDetailsService;
 
     @Autowired
-    JwtParam jwtParam;
-
-    @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder auth)
             throws Exception {
         auth
@@ -80,8 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 除上面外的所有请求全部不需要授权
                 .anyRequest().permitAll();
 
-        Filter loginFilter = new JwtLoginFilter(authenticationManager()).setJwtParam(jwtParam);
-        Filter authenticationFilter = new JwtAuthenticationFilter(authenticationManager()).setJwtParam(jwtParam);
+        Filter loginFilter = new JwtLoginFilter(authenticationManager());
+        Filter authenticationFilter = new JwtAuthenticationFilter(authenticationManager());
 
         //添加 登录过滤器 和 校验过滤器
         httpSecurity

@@ -39,15 +39,8 @@ import java.util.ArrayList;
 public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     private static Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
-    private JwtParam jwtParam;
-
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
-    }
-
-    public JwtAuthenticationFilter setJwtParam(JwtParam jwtParam) {
-        this.jwtParam = jwtParam;
-        return this;
     }
 
     @Override
@@ -55,22 +48,16 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
                                     FilterChain chain) throws IOException, ServletException {
         logParam(request);
 
-
         //验证
-        String token = TokenUtil.readToken(request, jwtParam.getJwtHeader(), jwtParam.getJwtSecret());
-
-        //if(WebUtil.checkToken(token, jwtParam.getJwtTokenHead(), jwtParam.getJwtSecret(), request.getRequestURI())){
-        //    chain.doFilter(request, response);
-        //    logger.info("登录失败，token：" + token);
-        //    return;
-        //}
+        String token = TokenUtil.getToken();
 
         if (StringUtils.isEmpty(token)) {
             chain.doFilter(request, response);
             return;
         }
 
-        if (token.startsWith(jwtParam.getJwtTokenHead())) {
+        //使用jwt
+        if (token.startsWith(TokenUtil.getBearer())) {
             try {
                 UsernamePasswordAuthenticationToken authentication = getAuthentication(token);
 
@@ -78,17 +65,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
                 chain.doFilter(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
-                chain.doFilter(request, response);
-            }
-        }
-
-//        String fakeMD5 = DigestUtil.fakeMD5(request.getRequestURI(), jwtParam.getJwtSecret());
-        String fakeMD5 = request.getRequestURI() + jwtParam.getJwtSecret();
-        if (fakeMD5.equals(token)) {
-            String username = request.getParameter("username");
-            if (StringUtils.hasLength(username)) {
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
                 chain.doFilter(request, response);
             }
         }
@@ -140,15 +116,10 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(String token) {
-        // parse the token.
-        String user = Jwts.parser()
-                .setSigningKey(jwtParam.getJwtSecret())
-                .parseClaimsJws(token.replace(jwtParam.getJwtTokenHead(), ""))
-                .getBody()
-                .getSubject();
+        String username = TokenUtil.getUsername(token);
 
-        if (user != null) {
-            return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+        if (username != null) {
+            return new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
         }
         return null;
     }

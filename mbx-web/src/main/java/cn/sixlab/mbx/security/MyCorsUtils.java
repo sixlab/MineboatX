@@ -31,7 +31,6 @@ public class MyCorsUtils {
     public static boolean isPreFlightRequest(HttpServletRequest request) {
         return isCorsRequest(request)
                 && HttpMethod.OPTIONS.matches(request.getMethod())
-                && HttpMethod.OPTIONS.matches(request.getMethod())
                 && request.getHeader("Access-Control-Request-Method") != null;
     }
 }
