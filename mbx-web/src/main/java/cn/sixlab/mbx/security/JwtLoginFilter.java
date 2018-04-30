@@ -1,8 +1,8 @@
-/**
+/*
  * Copyright (c) 2018 Sixlab. All rights reserved.
- * <p>
+ *
  * License information see the LICENSE file in the project's root directory.
- * <p>
+ *
  * For more information, please see
  * https://sixlab.cn/
  *
@@ -81,7 +81,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
         }
 
         ModelJson json = new ModelJson();
-        Map data = new HashMap();
+        Map<String, Object> data = new HashMap<>();
         data.put("token", token);
         data.put("expiration", TokenUtil.getExpiration());
 
