@@ -3,7 +3,7 @@
 [![输开源协议](https://img.shields.io/badge/License-MIT-brightgreen.svg "MIT")](https://opensource.org/licenses/mit-license.php)
 ![image](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-MineboatX 项目是 [Mineboat](https://github.com/PatrickRoot/Mineboat) 项目的一部分，是 Mineboat 项目的服务器端实现。
+MineboatX 项目是 [Mineboat](https://github.com/PatrickRoot/Mineboat) 项目的服务器端实现，可作为单独的项目使用。
 
 Mineboat 是一个前后端分离的框架，目的是实现一个**非分布式**的简单框架。
 
@@ -24,12 +24,16 @@ MineboatX 的 X 意味着这是服务器端代码**。
 ## 已完成
 
 - [x] 建立 Git 仓库并初始化
-- [ ] 初步完成模块的划分
+- [x] 完成模块的划分
+- [x] 集成Redis
+- [x] 开启Spring 自带定时器
+- [x] 核心模块：用户登录及校验
 
 ## TODO
 
-- [ ] 初步完成模块的划分
-- [ ] 登录、用户模块
+- [ ] 研究 plugin 挂载方式，力求简单方便
+- [ ] 添加数据库连接池
+- [ ] 配置日志
 
 ## 计划
 
@@ -40,11 +44,16 @@ MineboatX 的 X 意味着这是服务器端代码**。
 
 - 核心框架：Spring Boot
 - 安全框架：Spring Security
-- 任务调度：Spring + Quartz
 - 持久层框架：Spring Data JPA
 - 数据库：MySQL
-- [待定]文档性架构：MongoDB + FastDFS
+- 模板引擎：Spring Thymeleaf
+- 缓存框架：Redis
+- 定时器：Spring Scheduling Tasks
+
+待定：根据需要以及进度考虑是否添加
 - [待定]数据库连接池：Alibaba Druid
+- [待定]任务调度：Spring + Quartz
+- [待定]文档性架构：MongoDB + FastDFS
 - [待定]缓存框架：Redis + Guava
 - [待定]会话管理：Spring Session + Redis
 - [待定]日志管理：SLF4J、Log4j2
