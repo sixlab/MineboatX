@@ -11,20 +11,14 @@
  */
 package cn.sixlab.mbx;
 
-import cn.sixlab.mbx.core.beans.ModelJson;
-import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.common.base.BaseHandler;
 import cn.sixlab.mbx.core.common.util.ContextUtil;
-import org.springframework.beans.factory.config.PlaceholderConfigurerSupport;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.PropertySources;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Iterator;
 
 @Controller

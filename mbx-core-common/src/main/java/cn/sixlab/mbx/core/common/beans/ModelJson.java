@@ -9,8 +9,9 @@
  * @time: 2018-04-20 13:30
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.core.beans;
+package cn.sixlab.mbx.core.common.beans;
 
+import cn.sixlab.mbx.core.common.util.JsonUtil;
 import org.springframework.ui.ModelMap;
 
 public class ModelJson extends ModelMap {
@@ -64,5 +65,10 @@ public class ModelJson extends ModelMap {
         this.data = data;
         put("data", data);
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return JsonUtil.toJson(this);
     }
 }

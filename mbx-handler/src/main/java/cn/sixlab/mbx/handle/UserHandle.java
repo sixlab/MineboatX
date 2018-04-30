@@ -11,18 +11,15 @@
  */
 package cn.sixlab.mbx.handle;
 
-import cn.sixlab.mbx.core.beans.ModelJson;
+import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.common.base.BaseHandler;
+import cn.sixlab.mbx.core.common.util.TokenUtil;
 import cn.sixlab.mbx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/user")
@@ -31,20 +28,11 @@ public class UserHandle extends BaseHandler {
     private UserService service;
 
     @ResponseBody
-    @RequestMapping("/login")
-    public ModelJson index(String username, String password, HttpServletRequest request, HttpServletResponse response) {
-        MbxUser user = service.verifyLogin(username, password);
-        if(null!=user){
-            login(user, response);
-        }
+    @RequestMapping("/auth/getInfo")
+    public ModelJson getInfo() {
+        MbxUser mbxUser = service.getUser(TokenUtil.getUsername());
 
-        return new ModelJson().setSuccess(true).setMessage("成功");
+        return new ModelJson().setSuccess(true).setMessage("成功").setData(mbxUser);
     }
 
-    private void login(MbxUser user, HttpServletResponse response) {
-        Cookie cookie = new Cookie("token", user.toString());
-        cookie.setMaxAge(30*60*1000);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-    }
 }

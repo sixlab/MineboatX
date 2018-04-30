@@ -9,7 +9,7 @@
  * @time: 2018-04-28 18:49
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.security;
+package cn.sixlab.mbx.core.common.util;
 
 import cn.sixlab.mbx.core.common.util.TokenUtil;
 import org.springframework.util.StringUtils;
@@ -17,5 +17,9 @@ import org.springframework.util.StringUtils;
 public class UserUtil {
     public static boolean isLogined() {
         return StringUtils.hasLength(TokenUtil.getUsername());
+    }
+
+    public static String getUsername(){
+        return TokenUtil.getUsername();
     }
 }
