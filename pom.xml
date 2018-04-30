@@ -25,9 +25,9 @@
         <module>mbx-core-beans</module>
         <module>mbx-core-common</module>
         <module>mbx-core-dao</module>
-        <module>mbx-handler</module>
-        <module>mbx-plugin-parent</module>
-        <module>mbx-service</module>
+        <module>mbx-core-handler</module>
+        <module>mbx-plugin-dependencies</module>
+        <module>mbx-core-service</module>
         <module>mbx-web</module>
     </modules>
 

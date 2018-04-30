@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mbx-handler</artifactId>
+    <artifactId>mbx-core-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>mbx-handler</name>
-    <description>Default handlers for MineboatX.</description>
+    <name>mbx-core-service</name>
+    <description>Default services for MineboatX.</description>
 
     <dependencies>
         <dependency>
@@ -21,21 +21,29 @@
             <artifactId>spring-boot-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>cn.sixlab.mineboatx</groupId>
-            <artifactId>mbx-service</artifactId>
+            <artifactId>mbx-core-dao</artifactId>
         </dependency>
-
         <dependency>
             <groupId>cn.sixlab.mineboatx</groupId>
             <artifactId>mbx-core-common</artifactId>
         </dependency>
     </dependencies>
-    
+
 </project>
