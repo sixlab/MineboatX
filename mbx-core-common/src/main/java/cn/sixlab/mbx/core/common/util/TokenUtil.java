@@ -27,11 +27,11 @@ public class TokenUtil {
     public static String TOKEN_JWT_BEARER = "mbx.jwt.bearer";
 
     public static String getHeader() {
-        return PropertyUtil.getStrValue(TOKEN_JWT_HEADER);
+        return PropertyUtil.getValue(TOKEN_JWT_HEADER);
     }
 
     public static String getSecret() {
-        return PropertyUtil.getStrValue(TOKEN_JWT_SECRET);
+        return PropertyUtil.getValue(TOKEN_JWT_SECRET);
     }
 
     public static int getExpiration() {
@@ -39,7 +39,7 @@ public class TokenUtil {
     }
 
     public static String getBearer() {
-        return PropertyUtil.getStrValue(TOKEN_JWT_BEARER);
+        return PropertyUtil.getValue(TOKEN_JWT_BEARER);
     }
 
     public static String createToken(String username, String deviceType) {

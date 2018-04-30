@@ -11,55 +11,56 @@
  */
 package cn.sixlab.mbx.core.common.util;
 
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.PropertySource;
-import org.springframework.core.env.PropertySources;
-
-import java.util.Iterator;
+import org.springframework.core.convert.support.DefaultConversionService;
+import org.springframework.core.env.Environment;
 
 public class PropertyUtil {
 
-    public static Object getValue(String key) {
-        PropertySourcesPlaceholderConfigurer bean = ContextUtil.getBean(PropertySourcesPlaceholderConfigurer.class);
-        PropertySources propertySources = bean.getAppliedPropertySources();
-        Iterator<PropertySource<?>> iterator = propertySources.iterator();
-        while (iterator.hasNext()) {
-            PropertySource<?> next = iterator.next();
-            if (next.containsProperty(key)) {
-                return next.getProperty(key);
-            }
-        }
-        return null;
-    }
-
-    public static String getStrValue(String key) {
-        Object value = getValue(key);
-        if (null != value) {
-            return value.toString();
+    public static String getValue(String key) {
+        Environment bean = ContextUtil.getBean(Environment.class);
+        if (bean.containsProperty(key)) {
+            return bean.getProperty(key);
         }
         return "";
     }
 
-    public static String getStrValue(String key, String defaultValue) {
-        Object value = getValue(key);
-        if (null != value) {
-            return value.toString();
+    public static String getValue(String key, String defaultValue) {
+        Environment bean = ContextUtil.getBean(Environment.class);
+        if (bean.containsProperty(key)) {
+            return bean.getProperty(key);
         }
         return defaultValue;
     }
 
+    public static <T>T getValue(String key, Class<T> clz){
+        String value = getValue(key);
+
+        DefaultConversionService service = new DefaultConversionService();
+        T result = service.convert(value, clz);
+
+        return result;
+    }
+
     public static int getIntValue(String key) {
-        Object value = getValue(key);
-        if (null != value) {
-            return Integer.valueOf(value.toString());
+        String value = getValue(key);
+
+        DefaultConversionService service = new DefaultConversionService();
+        Integer result = service.convert(value, Integer.class);
+
+        if (null != result) {
+            return result;
         }
         return 0;
     }
 
     public static int getIntValue(String key, int defaultValue) {
-        Object value = getValue(key);
-        if (null != value) {
-            return Integer.valueOf(value.toString());
+        String value = getValue(key);
+
+        DefaultConversionService service = new DefaultConversionService();
+        Integer result = service.convert(value, Integer.class);
+
+        if (null != result) {
+            return result;
         }
         return defaultValue;
     }
