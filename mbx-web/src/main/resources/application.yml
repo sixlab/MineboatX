@@ -45,4 +45,8 @@ mbx:
     expiration: 604800000
     bearer: Bearer|
   domain:
-    sub: lx,blog,api,,
+    sub:
+      blog: ms
+      lx: lx
+      api: api
+    escape: localhost,sixlab.cn,sixlab.com
