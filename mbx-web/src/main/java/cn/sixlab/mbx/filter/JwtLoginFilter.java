@@ -9,7 +9,7 @@
  * @time: 2018-04-20 18:05
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.security;
+package cn.sixlab.mbx.filter;
 
 import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;

@@ -123,4 +123,28 @@ public class WebUtil {
         }
         return "";
     }
+    
+    public static String getDomain() {
+        StringBuffer sb = getRequest().getRequestURL();
+        sb.delete(0, sb.indexOf("://") + 3);
+        sb.delete(sb.indexOf("/"), sb.length());
+        if(sb.indexOf(":")>=0){
+            sb.delete(sb.indexOf(":"),sb.length());
+        }
+        return sb.toString();
+    }
+    
+    public static String getSubDomain() {
+        StringBuffer sb = getRequest().getRequestURL();
+        sb.delete(0, sb.indexOf("://") + 3);
+    
+        int dotIndex = sb.indexOf(".");
+    
+        if (dotIndex < 0) {
+            return "";
+        }
+    
+        sb.delete(dotIndex, sb.length());
+        return sb.toString();
+    }
 }

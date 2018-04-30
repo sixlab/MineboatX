@@ -9,7 +9,7 @@
  * @time: 2018-04-20 18:06
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.security;
+package cn.sixlab.mbx.config;
 
 import org.springframework.http.HttpMethod;
 

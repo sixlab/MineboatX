@@ -9,9 +9,11 @@
  * @time: 2018-04-20 18:04
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.security;
+package cn.sixlab.mbx.config;
 
 import cn.sixlab.mbx.core.service.JWTUserDetailsService;
+import cn.sixlab.mbx.filter.JwtAuthenticationFilter;
+import cn.sixlab.mbx.filter.JwtLoginFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
