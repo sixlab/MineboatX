@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2018 Sixlab. All rights reserved.
  * <p>
  * License information see the LICENSE file in the project's root directory.
@@ -12,7 +12,6 @@
 package cn.sixlab.mbx.security;
 
 import cn.sixlab.mbx.core.common.util.TokenUtil;
-import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -68,8 +67,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
                 chain.doFilter(request, response);
             }
         }
-
-        return;
     }
 
     private void logParam(HttpServletRequest request) {

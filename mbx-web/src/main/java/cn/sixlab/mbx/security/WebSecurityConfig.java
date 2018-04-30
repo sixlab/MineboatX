@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2018 Sixlab. All rights reserved.
  * <p>
  * License information see the LICENSE file in the project's root directory.
@@ -11,7 +11,7 @@
  */
 package cn.sixlab.mbx.security;
 
-import cn.sixlab.mbx.service.JWTUserDetailsService;
+import cn.sixlab.mbx.core.service.JWTUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

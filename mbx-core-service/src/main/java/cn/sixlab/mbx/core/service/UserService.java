@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2018 Sixlab. All rights reserved.
  * <p>
  * License information see the LICENSE file in the project's root directory.

@@ -13,18 +13,11 @@ package cn.sixlab.mbx.core.common.util;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.support.NoOpCacheManager;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
-import java.util.UUID;
 
 public class TokenUtil {
 
@@ -49,7 +42,7 @@ public class TokenUtil {
         return PropertyUtil.getStrValue(TOKEN_JWT_BEARER);
     }
 
-    public static String createToken(String username, String deviceType) throws UnsupportedEncodingException {
+    public static String createToken(String username, String deviceType) {
 
         long expiration = System.currentTimeMillis() + getExpiration();
 
@@ -97,13 +90,11 @@ public class TokenUtil {
     }
 
     public static String getValue(String token) {
-        String value = Jwts.parser()
+        return Jwts.parser()
                 .setSigningKey(getSecret())
                 .parseClaimsJws(token.replace(getBearer(), ""))
                 .getBody()
                 .getSubject();
-
-        return value;
     }
 
     public static String getUsername() {
