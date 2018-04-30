@@ -11,7 +11,7 @@
  */
 package cn.sixlab.mbx.security;
 
-import cn.sixlab.mbx.core.beans.ModelJson;
+import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.common.util.TokenUtil;
 import cn.sixlab.mbx.core.common.util.WebUtil;

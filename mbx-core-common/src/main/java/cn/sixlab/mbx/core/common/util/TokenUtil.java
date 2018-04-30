@@ -34,23 +34,19 @@ public class TokenUtil {
     public static String TOKEN_JWT_BEARER = "mbx.jwt.bearer";
 
     public static String getHeader() {
-        Object value = PropertyUtil.getValue(TOKEN_JWT_HEADER);
-        return null == value ? "" : value.toString();
+        return PropertyUtil.getStrValue(TOKEN_JWT_HEADER);
     }
 
     public static String getSecret() {
-        Object value = PropertyUtil.getValue(TOKEN_JWT_SECRET);
-        return null == value ? "" : value.toString();
+        return PropertyUtil.getStrValue(TOKEN_JWT_SECRET);
     }
 
     public static int getExpiration() {
-        Integer value = PropertyUtil.getValue(TOKEN_JWT_EXPIRATION, Integer.class);
-        return null == value ? 0 : value;
+        return PropertyUtil.getIntValue(TOKEN_JWT_EXPIRATION);
     }
 
     public static String getBearer() {
-        Object value = PropertyUtil.getValue(TOKEN_JWT_BEARER);
-        return null == value ? "" : value.toString();
+        return PropertyUtil.getStrValue(TOKEN_JWT_BEARER);
     }
 
     public static String createToken(String username, String deviceType) throws UnsupportedEncodingException {
@@ -68,7 +64,7 @@ public class TokenUtil {
         String token = Jwts.builder()
                 .setSubject(subject)
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(SignatureAlgorithm.HS512, Base64.getEncoder().encode(getSecret().getBytes("utf-8")))
+                .signWith(SignatureAlgorithm.HS512, getSecret())
                 .compact();
 
         token = getBearer() + token;
@@ -88,6 +84,11 @@ public class TokenUtil {
             token = WebUtil.getCookie(jwtHeader);
         }
 
+        // 如果没有，再读取 request
+        if (StringUtils.isEmpty(token)) {
+            token = request.getParameter(jwtHeader);
+        }
+
         return token;
     }
 
@@ -98,7 +99,7 @@ public class TokenUtil {
     public static String getValue(String token) {
         String value = Jwts.parser()
                 .setSigningKey(getSecret())
-                .parseClaimsJws(token.replaceFirst(getBearer(), ""))
+                .parseClaimsJws(token.replace(getBearer(), ""))
                 .getBody()
                 .getSubject();
 

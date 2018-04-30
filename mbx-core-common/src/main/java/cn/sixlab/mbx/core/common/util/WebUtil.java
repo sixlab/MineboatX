@@ -103,7 +103,7 @@ public class WebUtil {
 
     public static void addCookie(String key, String val, int expiry ) {
         Cookie cookie = new Cookie(key.trim(), val.trim());
-        cookie.setMaxAge(expiry); // 30min
+        cookie.setMaxAge(expiry/1000);
         cookie.setPath("/");
         getResponse().addCookie(cookie);
     }

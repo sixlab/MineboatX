@@ -32,18 +32,35 @@ public class PropertyUtil {
         return null;
     }
 
-    public static <T> T getValue(String key, Class<T> clz) {
-        PropertySourcesPlaceholderConfigurer bean = ContextUtil.getBean(PropertySourcesPlaceholderConfigurer.class);
-        PropertySources propertySources = bean.getAppliedPropertySources();
-        Iterator<PropertySource<?>> iterator = propertySources.iterator();
-        while (iterator.hasNext()) {
-            PropertySource<?> next = iterator.next();
-            if (next.containsProperty(key)) {
-                if(clz.isInstance(next.getProperty(key))){
-                    return (T)next.getProperty(key);
-                }
-            }
+    public static String getStrValue(String key) {
+        Object value = getValue(key);
+        if (null != value) {
+            return value.toString();
         }
-        return null;
+        return "";
+    }
+
+    public static String getStrValue(String key, String defaultValue) {
+        Object value = getValue(key);
+        if (null != value) {
+            return value.toString();
+        }
+        return defaultValue;
+    }
+
+    public static int getIntValue(String key) {
+        Object value = getValue(key);
+        if (null != value) {
+            return Integer.valueOf(value.toString());
+        }
+        return 0;
+    }
+
+    public static int getIntValue(String key, int defaultValue) {
+        Object value = getValue(key);
+        if (null != value) {
+            return Integer.valueOf(value.toString());
+        }
+        return defaultValue;
     }
 }

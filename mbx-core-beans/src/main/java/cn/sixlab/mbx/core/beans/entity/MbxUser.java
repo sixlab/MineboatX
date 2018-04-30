@@ -11,6 +11,8 @@
  */
 package cn.sixlab.mbx.core.beans.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,10 +28,13 @@ public class MbxUser implements Serializable {
     private Timestamp insertTime;
 
     private String username;
-    private String password;
+    private String nickname;
     private String email;
     private String phone;
     private String status;
+
+    @JsonIgnore
+    private String password;
 
     public Integer getId() {
         return id;
@@ -63,12 +68,12 @@ public class MbxUser implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getEmail() {
@@ -93,5 +98,13 @@ public class MbxUser implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
