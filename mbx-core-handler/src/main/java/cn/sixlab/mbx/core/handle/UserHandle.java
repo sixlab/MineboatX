@@ -9,13 +9,13 @@
  * @time: 2018-04-20 12:23
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.handle;
+package cn.sixlab.mbx.core.handle;
 
 import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.common.base.BaseHandler;
 import cn.sixlab.mbx.core.common.util.TokenUtil;
-import cn.sixlab.mbx.service.UserService;
+import cn.sixlab.mbx.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

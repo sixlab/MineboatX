@@ -9,7 +9,7 @@
  * @time: 2018-04-20 18:07
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.service;
+package cn.sixlab.mbx.core.service;
 
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.beans.entity.MbxUserRole;
