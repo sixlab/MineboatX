@@ -44,3 +44,5 @@ mbx:
     secret: Sixlab's Mbx
     expiration: 604800000
     bearer: Bearer|
+  domain:
+    sub: lx,blog,api,,
