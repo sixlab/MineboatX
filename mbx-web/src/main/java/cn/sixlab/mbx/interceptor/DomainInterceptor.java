@@ -29,33 +29,39 @@ public class DomainInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler) {
-        
-        String pName = ((HandlerMethod) handler).getBeanType().getPackage().getName();
-        
-        boolean goBack = false;
-        if(pName.startsWith("cn.sixlab.mbx.plugin.")){
-            String subDomain = WebUtil.getSubDomain();
-            if(domainConfig.getSub().containsKey(subDomain)){
-                if (pName.startsWith("cn.sixlab.mbx.plugin." + domainConfig.getSub().get(subDomain))) {
-                    goBack = false;
-                }else{
-                    goBack = true;
-                }
-            }else {
-                String domain = WebUtil.getDomain();
-                if(domainConfig.getEscape().contains(domain)){
-                    goBack = false;
-                }else{
-                    goBack = true;
+
+        if (null == handler) {
+            return true;
+        }
+
+        if(handler instanceof HandlerMethod){
+            String pName = ((HandlerMethod) handler).getBeanType().getPackage().getName();
+
+            boolean goBack = false;
+            if (pName.startsWith("cn.sixlab.mbx.plugin.")) {
+                String subDomain = WebUtil.getSubDomain();
+                if (domainConfig.getSub().containsKey(subDomain)) {
+                    if (pName.startsWith("cn.sixlab.mbx.plugin." + domainConfig.getSub().get(subDomain))) {
+                        goBack = false;
+                    } else {
+                        goBack = true;
+                    }
+                } else {
+                    String domain = WebUtil.getDomain();
+                    if (domainConfig.getEscape().contains(domain)) {
+                        goBack = false;
+                    } else {
+                        goBack = true;
+                    }
                 }
             }
+
+            if (goBack) {
+                response.setStatus(404);
+                return false;
+            }
         }
-        
-        if(goBack){
-            response.setStatus(404);
-            return false;
-        }
-        
+
         return true;
     }
 }
