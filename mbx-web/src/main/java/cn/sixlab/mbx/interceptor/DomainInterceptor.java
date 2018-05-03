@@ -37,26 +37,26 @@ public class DomainInterceptor implements HandlerInterceptor {
         if(handler instanceof HandlerMethod){
             String pName = ((HandlerMethod) handler).getBeanType().getPackage().getName();
 
-            boolean goBack = false;
+            boolean stop = false;
             if (pName.startsWith("cn.sixlab.mbx.plugin.")) {
                 String subDomain = WebUtil.getSubDomain();
                 if (domainConfig.getSub().containsKey(subDomain)) {
                     if (pName.startsWith("cn.sixlab.mbx.plugin." + domainConfig.getSub().get(subDomain))) {
-                        goBack = false;
+                        stop = false;
                     } else {
-                        goBack = true;
+                        stop = true;
                     }
                 } else {
                     String domain = WebUtil.getDomain();
                     if (domainConfig.getEscape().contains(domain)) {
-                        goBack = false;
+                        stop = false;
                     } else {
-                        goBack = true;
+                        stop = true;
                     }
                 }
             }
 
-            if (goBack) {
+            if (stop) {
                 response.setStatus(404);
                 return false;
             }
