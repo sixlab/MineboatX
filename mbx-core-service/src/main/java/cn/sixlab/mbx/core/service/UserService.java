@@ -15,6 +15,7 @@ import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.beans.entity.MbxUserRole;
 import cn.sixlab.mbx.core.common.base.BaseService;
 import cn.sixlab.mbx.core.common.exception.MbxException;
+import cn.sixlab.mbx.core.dao.BaseRepository;
 import cn.sixlab.mbx.core.dao.repository.UserRepository;
 import cn.sixlab.mbx.core.dao.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,17 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 @Service
-public class UserService extends BaseService {
+public class UserService extends BaseService<MbxUser, Integer> {
     @Autowired
     private UserRepository repository;
 
     @Autowired
     private UserRoleRepository userRoleRepository;
+
+    @Override
+    public BaseRepository getRepository() {
+        return repository;
+    }
 
     public MbxUser verifyLogin(String username, String password) {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
