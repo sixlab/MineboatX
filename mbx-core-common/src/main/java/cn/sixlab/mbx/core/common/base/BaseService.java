@@ -11,5 +11,26 @@
  */
 package cn.sixlab.mbx.core.common.base;
 
-public class BaseService {
+import cn.sixlab.mbx.core.dao.BaseRepository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
+
+public abstract class BaseService<E, ID extends Serializable> {
+    public abstract BaseRepository<E, ID> getRepository();
+
+    @Transactional
+    public E save(E entity) {
+        return getRepository().saveAndFlush(entity);
+    }
+
+    @Transactional
+    public void delete(ID id) {
+        getRepository().deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public E get(ID id) {
+        return getRepository().getOne(id);
+    }
 }
