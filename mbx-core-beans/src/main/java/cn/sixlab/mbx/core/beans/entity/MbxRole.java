@@ -12,47 +12,14 @@
 package cn.sixlab.mbx.core.beans.entity;
 
 
+import cn.sixlab.mbx.core.beans.BaseEntity;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
-import java.sql.Timestamp;
 
 @Entity
-public class MbxRole implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Character deleted;
-    private Timestamp insertTime;
-
+public class MbxRole extends BaseEntity {
     private String roleCode;
     private String roleName;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Character getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Character deleted) {
-        this.deleted = deleted;
-    }
-
-    public Timestamp getInsertTime() {
-        return insertTime;
-    }
-
-    public void setInsertTime(Timestamp insertTime) {
-        this.insertTime = insertTime;
-    }
 
     public String getRoleCode() {
         return roleCode;
