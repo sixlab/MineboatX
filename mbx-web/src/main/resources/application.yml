@@ -38,8 +38,8 @@ spring:
         content:
           enabled: true
           paths: /**
-
 mbx:
+  version: '@project.version@'
   jwt:
     header: Authorization
     secret: Sixlab's Mbx

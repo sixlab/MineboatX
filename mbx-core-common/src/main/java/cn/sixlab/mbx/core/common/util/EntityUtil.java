@@ -15,7 +15,11 @@ import cn.sixlab.mbx.core.beans.BaseEntity;
 
 public class EntityUtil {
     public static void setVal(BaseEntity entity) {
-        entity.setDeleted('0');
-        entity.setInsertTime(TimeUtil.now());
+        if (null == entity.getDeleted()) {
+            entity.setDeleted('0');
+        }
+        if (null == entity.getInsertTime()) {
+            entity.setInsertTime(TimeUtil.now());
+        }
     }
 }
