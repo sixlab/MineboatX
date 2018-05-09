@@ -1,8 +1,6 @@
 package cn.sixlab.mbx;
 
 import cn.sixlab.mbx.core.common.util.ContextUtil;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;

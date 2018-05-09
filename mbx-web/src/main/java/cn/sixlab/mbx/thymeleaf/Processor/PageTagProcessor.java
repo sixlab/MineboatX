@@ -113,143 +113,90 @@ public class PageTagProcessor extends AbstractAttributeTagProcessor {
         model.add(modelFactory.createOpenElementTag("ul"));
         
         // 上一页
-        model.add(modelFactory.createOpenElementTag("li"));
-        if (page.isFirst()) {
-            model.add(modelFactory.createOpenElementTag("a", "class", "active"));
-        } else {
-            model.add(modelFactory.createOpenElementTag("a", "class", "active"));
-        }
-        model.add(modelFactory.createText(page.getNumber() + "<"));
-        model.add(modelFactory.createCloseElementTag("a"));
-        model.add(modelFactory.createCloseElementTag("li"));
+        addLi(model, modelFactory, "<", page.isFirst() ? "first" : "first active");
         
-        if (page.getTotalPages() < 5) {
+        if (page.getTotalPages() <= 5) {
             for (int i = 0; i < page.getTotalPages(); i++) {
-                addNo(page, modelFactory, model, i);
+                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current" : "active");
             }
         } else {
             //第一页
-            model.add(modelFactory.createOpenElementTag("li"));
-            if (page.isFirst()) {
-                model.add(modelFactory.createOpenElementTag("a", "class", "active"));
-            } else {
-                model.add(modelFactory.createOpenElementTag("a"));
-            }
-            model.add(modelFactory.createText("1"));
-            model.add(modelFactory.createCloseElementTag("a"));
-            model.add(modelFactory.createCloseElementTag("li"));
+            addLi(model, modelFactory, "1", page.isFirst()?"active":"");
             
             // dot
             int start = 1;
-            if (page.getNumber() > 4) {
-                model.add(modelFactory.createOpenElementTag("li"));
-                model.add(modelFactory.createOpenElementTag("a"));
-                model.add(modelFactory.createText("."));
-                model.add(modelFactory.createCloseElementTag("a"));
-                model.add(modelFactory.createCloseElementTag("li"));
+            int end = page.getNumber() + 2;
+
+            if (page.getNumber() >= 4) {
+                addLi(model, modelFactory, "...", "dot");
+
                 start = page.getNumber() - 1;
+                if ((page.getTotalPages() - page.getNumber()) <= 4) {
+                    end = page.getTotalPages() - 1;
+                }
             }
             
             // 至当前页
-            for (int i = start; i < page.getNumber() + 1; i++) {
-                addNo(page, modelFactory, model, i);
+            for (int i = start; i < end; i++) {
+                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current" : "active");
             }
-            
-            // dot
-            int end = page.getTotalPages() - 1 - 1;
-            if ((page.getTotalPages() - page.getNumber() - 1) > 4) {
-                addNo(page, modelFactory, model, page.getNumber() + 1 + 1);
-                
-                model.add(modelFactory.createOpenElementTag("li"));
-                model.add(modelFactory.createOpenElementTag("a"));
-                model.add(modelFactory.createText("."));
-                model.add(modelFactory.createCloseElementTag("a"));
-                model.add(modelFactory.createCloseElementTag("li"));
-                end = page.getNumber() + 1;
-                
-                // 最后一页
-                model.add(modelFactory.createOpenElementTag("li"));
-                if (page.isLast()) {
-                    model.add(modelFactory.createOpenElementTag("a", "class", "active"));
-                } else {
-                    model.add(modelFactory.createOpenElementTag("a"));
-                }
-            } else {
-                for (int i = page.getNumber() + 1; i < page.getTotalPages(); i++) {
-                    addNo(page, modelFactory, model, i);
-                }
+
+            if ((page.getTotalPages() - page.getNumber()) > 4) {
+                addLi(model, modelFactory, "...", "dot");
             }
-            
-            model.add(modelFactory.createText(String.valueOf(page.getTotalPages())));
-            model.add(modelFactory.createCloseElementTag("a"));
-            model.add(modelFactory.createCloseElementTag("li"));
+
+            // 最后一页
+            addLi(model, modelFactory, String.valueOf(page.getTotalPages()), page.isLast() ? "dot" : "dot active");
         }
         
         // 下一页
-        model.add(modelFactory.createOpenElementTag("li"));
-        model.add(modelFactory.createOpenElementTag("a", "class", "active"));
-        model.add(modelFactory.createText(">" + page.getTotalPages()));
-        model.add(modelFactory.createCloseElementTag("a"));
-        model.add(modelFactory.createCloseElementTag("li"));
+        addLi(model, modelFactory, ">", page.isFirst() ? "end" : "end active");
         
         //关闭标签
         model.add(modelFactory.createCloseElementTag("ul"));
         structureHandler.replaceWith(model, true);
         
         // <div id="ttt" mbx:page="${result}"></div>
+
+        // 12.6         0 [1,0+2)
+        // 123.6        1 [1,1+2)
+        // 1234.6       2 [1,2+2)
+        // 123456       3 [1,3+2)------------------
+        // 1.456        4 [3,5)
+        // 1.56         5 [4,5)
         
-        // 12.5         1
-        // 12345        234
-        // 1.45         5
+        //12.7          0 [1,0+2)
+        //123.7         1 [1,1+2)
+        //1234.7        2 [1,2+2)
+        //1234567       3 [1,3+2)------------------
+        //1.4567        4 [3,6)
+        //1.567         5 [4,6)
+        //1.67          6 [5,6)
         
-        // 12.6         1
-        // 123.6        2
-        // 1234.6       3
-        // 123456       4
-        // 1.456        5
-        // 1.56         6
+        //12.8          0 [1,0+2)
+        //123.8         1 [1,1+2)
+        //1234.8        2 [1,2+2)
+        //12345.8       3 [1,3+2)------------------
+        //1.45678       4 [3,7)
+        //1.5678        5 [4,7)
+        //1.678         6 [5,7)
+        //1.78          7 [6,7)
         
-        //12.7          1
-        //123.7         2
-        //1234.7        3
-        //12345.7       4
-        //1.4567        5
-        //1.567         6
-        //1.67          7
-        
-        //12.8          1
-        //123.8         2
-        //1234.8        3
-        //12345.8       4
-        //1.45678       5
-        //1.5678        6
-        //1.678         7
-        //1.78         8
-        
-        //12.9          1
-        //123.9         2
-        //1234.9        3
-        //12345.9       4
-        //1.456.9       5
-        //1.56789       6
-        //1.6789        7
-        //1.789         8
-        //1.89          9
-        
-        // < 1234567.YZ > 1
-        // < 1234567.YZ > 6
-        // < 1234567 > 7
-        // < 1.456.9X > 8
+        //12.9          0 [1,0+2)
+        //123.9         1 [1,1+2)
+        //1234.9        2 [1,2+2)
+        //12345.9       3 [1,3+2)------------------
+        //1.456.9       4 [3,6)
+        //1.56789       5 [4,8)------------------
+        //1.6789        6 [5,8)
+        //1.789         7 [6,8)
+        //1.89          8 [7,8)
     }
-    
-    private void addNo(Page page, IModelFactory modelFactory, IModel model, int i) {
+
+    private void addLi(IModel model, IModelFactory modelFactory, String text, String clz) {
         model.add(modelFactory.createOpenElementTag("li"));
-        if (i == page.getNumber()) {
-            model.add(modelFactory.createOpenElementTag("a", "class", "active"));
-        } else {
-            model.add(modelFactory.createOpenElementTag("a"));
-        }
-        model.add(modelFactory.createText(String.valueOf(i + 1)));
+        model.add(modelFactory.createOpenElementTag("a", "class", clz));
+        model.add(modelFactory.createText(text));
         model.add(modelFactory.createCloseElementTag("a"));
         model.add(modelFactory.createCloseElementTag("li"));
     }
