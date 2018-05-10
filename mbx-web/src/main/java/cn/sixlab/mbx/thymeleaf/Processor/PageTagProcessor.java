@@ -110,25 +110,25 @@ public class PageTagProcessor extends AbstractAttributeTagProcessor {
         
         final IModel model = modelFactory.createModel();
         
-        model.add(modelFactory.createOpenElementTag("ul"));
+        model.add(modelFactory.createOpenElementTag("ul","class","mbx-pagination"));
         
         // 上一页
-        addLi(model, modelFactory, "<", page.isFirst() ? "first" : "first active");
+        addLi(model, modelFactory, "<", page.isFirst() ? "left symbol disabled" : "left symbol active");
         
         if (page.getTotalPages() <= 5) {
             for (int i = 0; i < page.getTotalPages(); i++) {
-                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current" : "active");
+                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current num disabled" : "num active");
             }
         } else {
             //第一页
-            addLi(model, modelFactory, "1", page.isFirst()?"active":"");
+            addLi(model, modelFactory, "1", page.isFirst()?"current num disabled":"num active");
             
             // dot
             int start = 1;
             int end = page.getNumber() + 2;
 
             if (page.getNumber() >= 4) {
-                addLi(model, modelFactory, "...", "dot");
+                addLi(model, modelFactory, "...", "dot disabled");
 
                 start = page.getNumber() - 1;
                 if ((page.getTotalPages() - page.getNumber()) <= 4) {
@@ -138,19 +138,19 @@ public class PageTagProcessor extends AbstractAttributeTagProcessor {
             
             // 至当前页
             for (int i = start; i < end; i++) {
-                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current" : "active");
+                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current num disabled" : "num active");
             }
 
             if ((page.getTotalPages() - page.getNumber()) > 4) {
-                addLi(model, modelFactory, "...", "dot");
+                addLi(model, modelFactory, "...", "dot disabled");
             }
 
             // 最后一页
-            addLi(model, modelFactory, String.valueOf(page.getTotalPages()), page.isLast() ? "dot" : "dot active");
+            addLi(model, modelFactory, String.valueOf(page.getTotalPages()), page.isLast() ? "current num disabled" : "num active");
         }
         
         // 下一页
-        addLi(model, modelFactory, ">", page.isFirst() ? "end" : "end active");
+        addLi(model, modelFactory, ">", page.isLast() ? "right symbol disabled" : "right symbol active");
         
         //关闭标签
         model.add(modelFactory.createCloseElementTag("ul"));
