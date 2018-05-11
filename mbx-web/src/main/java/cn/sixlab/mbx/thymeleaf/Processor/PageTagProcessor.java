@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
+import org.thymeleaf.model.AttributeValueQuotes;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
 import org.thymeleaf.model.IProcessableElementTag;
@@ -24,6 +25,9 @@ import org.thymeleaf.standard.expression.IStandardExpression;
 import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 import org.thymeleaf.templatemode.TemplateMode;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class PageTagProcessor extends AbstractAttributeTagProcessor {
     
@@ -112,9 +116,6 @@ public class PageTagProcessor extends AbstractAttributeTagProcessor {
         
         model.add(modelFactory.createOpenElementTag("ul","class","mbx-pagination"));
         
-        // 上一页
-        addLi(model, modelFactory, "<", page.isFirst() ? "left symbol disabled" : "left symbol active");
-        
         if (page.getTotalPages() <= 5) {
             for (int i = 0; i < page.getTotalPages(); i++) {
                 addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current num disabled" : "num active");
@@ -148,9 +149,6 @@ public class PageTagProcessor extends AbstractAttributeTagProcessor {
             // 最后一页
             addLi(model, modelFactory, String.valueOf(page.getTotalPages()), page.isLast() ? "current num disabled" : "num active");
         }
-        
-        // 下一页
-        addLi(model, modelFactory, ">", page.isLast() ? "right symbol disabled" : "right symbol active");
         
         //关闭标签
         model.add(modelFactory.createCloseElementTag("ul"));
@@ -194,8 +192,12 @@ public class PageTagProcessor extends AbstractAttributeTagProcessor {
     }
 
     private void addLi(IModel model, IModelFactory modelFactory, String text, String clz) {
+        final Map<String, String> attributes = new LinkedHashMap<>();
+        attributes.put("class", clz);
+        attributes.put("data-num", text);
+
         model.add(modelFactory.createOpenElementTag("li"));
-        model.add(modelFactory.createOpenElementTag("a", "class", clz));
+        model.add(modelFactory.createOpenElementTag("a", attributes, AttributeValueQuotes.DOUBLE,false));
         model.add(modelFactory.createText(text));
         model.add(modelFactory.createCloseElementTag("a"));
         model.add(modelFactory.createCloseElementTag("li"));
