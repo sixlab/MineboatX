@@ -113,46 +113,49 @@ public class PageTagProcessor extends AbstractAttributeTagProcessor {
         final IModelFactory modelFactory = context.getModelFactory();
         
         final IModel model = modelFactory.createModel();
+    
+        if (page.getTotalPages() > 1) {
         
-        model.add(modelFactory.createOpenElementTag("ul","class","mbx-pagination"));
+            model.add(modelFactory.createOpenElementTag("ul","class","mbx-pagination"));
         
-        if (page.getTotalPages() <= 5) {
-            for (int i = 0; i < page.getTotalPages(); i++) {
-                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current num disabled" : "num active");
-            }
-        } else {
-            //第一页
-            addLi(model, modelFactory, "1", page.isFirst()?"current num disabled":"num active");
-            
-            // dot
-            int start = 1;
-            int end = page.getNumber() + 2;
-
-            if (page.getNumber() >= 4) {
-                addLi(model, modelFactory, "...", "dot disabled");
-
-                start = page.getNumber() - 1;
-                if ((page.getTotalPages() - page.getNumber()) <= 4) {
-                    end = page.getTotalPages() - 1;
+            if (page.getTotalPages() <= 5) {
+                for (int i = 0; i < page.getTotalPages(); i++) {
+                    addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current num disabled" : "num active");
                 }
+            } else {
+                //第一页
+                addLi(model, modelFactory, "1", page.isFirst()?"current num disabled":"num active");
+                
+                // dot
+                int start = 1;
+                int end = page.getNumber() + 2;
+    
+                if (page.getNumber() >= 4) {
+                    addLi(model, modelFactory, "...", "dot disabled");
+    
+                    start = page.getNumber() - 1;
+                    if ((page.getTotalPages() - page.getNumber()) <= 4) {
+                        end = page.getTotalPages() - 1;
+                    }
+                }
+                
+                // 至当前页
+                for (int i = start; i < end; i++) {
+                    addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current num disabled" : "num active");
+                }
+    
+                if ((page.getTotalPages() - page.getNumber()) > 4) {
+                    addLi(model, modelFactory, "...", "dot disabled");
+                }
+    
+                // 最后一页
+                addLi(model, modelFactory, String.valueOf(page.getTotalPages()), page.isLast() ? "current num disabled" : "num active");
             }
             
-            // 至当前页
-            for (int i = start; i < end; i++) {
-                addLi(model, modelFactory, String.valueOf(i + 1), (i == page.getNumber()) ? "current num disabled" : "num active");
-            }
-
-            if ((page.getTotalPages() - page.getNumber()) > 4) {
-                addLi(model, modelFactory, "...", "dot disabled");
-            }
-
-            // 最后一页
-            addLi(model, modelFactory, String.valueOf(page.getTotalPages()), page.isLast() ? "current num disabled" : "num active");
+            //关闭标签
+            model.add(modelFactory.createCloseElementTag("ul"));
+            structureHandler.replaceWith(model, true);
         }
-        
-        //关闭标签
-        model.add(modelFactory.createCloseElementTag("ul"));
-        structureHandler.replaceWith(model, true);
         
         // <div id="ttt" mbx:page="${result}"></div>
 
