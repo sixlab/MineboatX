@@ -50,9 +50,15 @@
             <groupId>cn.sixlab.mineboatx</groupId>
             <artifactId>mbx-core-handler</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>cn.sixlab.mineboatx</groupId>
+            <artifactId>mbx-plugin-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>mbx</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
