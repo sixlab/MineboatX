@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title, keywords)">
+    <title th:text="${title} + ' | 六楼实验室'">六楼实验室</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" th:content="${keywords}+' 六楼实验室,sixlab,六楼的雨'" content="六楼实验室,sixlab,六楼的雨"/>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script th:src="@{/static/js/ms.js}"></script>
+
+    <link th:href="@{/static/css/ms.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/static/iconfont/ms/iconfont.css}" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+
+<header th:fragment="header">
+    <div class="mbx-header">
+        <div class="header-container header-logo">
+            <a th:href="@{/}"><img th:src="@{//www.baidu.com/img/baidu_jgylogo3.gif}" /></a>
+        </div>
+        <div class="header-container header-menu">
+            <a th:href="@{/}">首页1</a>
+            <a th:href="@{/}">首页2</a>
+            <a th:href="@{/}">首页3</a>
+        </div>
+        <div class="header-container header-other">
+            <a>关注本站</a>
+        </div>
+    </div>
+</header>
+
+<aside th:fragment="aside">
+    aside todo
+</aside>
+
+<article>
+    默认替换
+</article>
+
+<footer th:fragment="footer">
+    <p class="copyright" th:include="frame/copyright">©2018 六楼实验室 豫ICP备15033629号</p>
+</footer>
+
+<!--header 页眉-->
+<!--nav 导航栏（横的竖的都行）-->
+<!--footer 页脚-->
+
+<!--aside 正文里的图片、注解-->
+<!--article 正文-->
+<!--section 比article小一级，可以嵌套-->
+
+<!--figure 表格-->
+</body>
+</html>

@@ -26,6 +26,7 @@
         <module>mbx-core-common</module>
         <module>mbx-core-dao</module>
         <module>mbx-core-handler</module>
+        <module>mbx-plugin-api</module>
         <module>mbx-plugin-dependencies</module>
         <module>mbx-core-service</module>
         <module>mbx-web</module>

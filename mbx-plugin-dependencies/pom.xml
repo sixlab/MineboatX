@@ -36,10 +36,5 @@
             <groupId>cn.sixlab.mineboatx</groupId>
             <artifactId>mbx-core-service</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>cn.sixlab.mineboatx</groupId>
-            <artifactId>mbx-web</artifactId>
-        </dependency>
     </dependencies>
 </project>
