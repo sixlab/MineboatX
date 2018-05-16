@@ -38,6 +38,24 @@ spring:
         content:
           enabled: true
           paths: /**
+  mail:
+    default-encoding: utf-8
+    host: smtp.XXXX.cn
+    username: XXX@XXX.cn
+    password: XXXXXXX
+    protocol: smtps
+    port: 465
+    properties:
+      mail:
+        debug: false
+        smpt:
+          timeout: 30000
+          starttls:
+            enable: false
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+
 mbx:
   version: '@project.version@'
   jwt:
