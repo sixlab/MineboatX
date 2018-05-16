@@ -54,6 +54,12 @@
         <dependency>
             <groupId>cn.sixlab.mineboatx</groupId>
             <artifactId>mbx-plugin-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.sixlab.mineboatx</groupId>
+            <artifactId>mbx-plugin-ms</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

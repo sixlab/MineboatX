@@ -1,0 +1,97 @@
+#archive-list .archive-item{
+    padding: 20px 24px 22px;
+    background-color: #fff;
+    margin-top: 12px;
+}
+
+.archive-item .archive-title h2 {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 0;
+}
+
+.archive-item .archive-title h2 a:hover {
+    color: #4173af;
+}
+
+.archive-item .archive-title h2 a:visited {
+    color: #333;
+}
+
+.archive-item .archive-title h2 a {
+    cursor: pointer;
+    color: #333;
+    font-weight: 700;
+}
+
+.archive-item .archive-title .archive-view-count:before {
+    display: inline-block;
+    content: '·';
+    width: 13px;
+    text-align: center;
+}
+.archive-item .archive-title .archive-info {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #999;
+}
+
+.archive-item .archive-subject {
+    padding: 8px 0 0;
+}
+
+.archive-item .archive-subject p{
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+    word-wrap: break-word;
+    display: block;
+}
+
+.archive-subject a:visited{
+    color: #333;
+}
+.archive-subject a:hover{
+    color: #333;
+}
+
+.archive-subject a{
+    color: #333;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.archive-item .archive-subject .archive-subject-link{
+    color: #4173af;
+}
+
+.archive-item .archive-operator{
+    height: 20px;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.archive-operator a {
+    cursor: pointer;
+    color: #b2b2b2;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 36px;
+}
+
+.archive-operator a:hover {
+    color: #cacaca;
+}
+
+.archive-operator a:visited {
+    color: #b2b2b2;
+}
+
+.archive-operator .archive-thumb {
+    position: relative;
+    display: inline-block;
+}
+
+.archive-thumb .icon-thumb{
+    margin-right: 6px;
+}
