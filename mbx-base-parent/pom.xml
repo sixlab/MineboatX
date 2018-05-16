@@ -79,12 +79,6 @@
                 <artifactId>mbx-plugin-dependencies</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>cn.sixlab.mineboatx</groupId>
-                <artifactId>mbx-plugin-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
