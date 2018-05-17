@@ -9,7 +9,7 @@
  * @time: 2017/10/26 12:44
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.plugin.api;
+package cn.sixlab.mbx.plugin.api.util;
 
 public class CONST {
     

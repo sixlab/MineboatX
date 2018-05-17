@@ -13,7 +13,7 @@ package cn.sixlab.mbx.plugin.api.handler;
 
 import cn.sixlab.mbx.core.common.base.BaseHandler;
 import cn.sixlab.mbx.core.common.beans.ModelJson;
-import cn.sixlab.mbx.plugin.api.DateTimeUtil;
+import cn.sixlab.mbx.plugin.api.util.DateTimeUtil;
 import cn.sixlab.mbx.plugin.api.beans.MsxAssignment;
 import cn.sixlab.mbx.plugin.api.service.AssignmentService;
 import org.slf4j.Logger;
