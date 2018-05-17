@@ -11,7 +11,7 @@
  */
 package cn.sixlab.mbx.plugin.api.service;
 
-import cn.sixlab.mbx.plugin.api.CONST;
+import cn.sixlab.mbx.plugin.api.util.CONST;
 import cn.sixlab.mbx.plugin.api.beans.MsxShow;
 import cn.sixlab.mbx.plugin.api.dao.ShowRepo;
 import org.slf4j.Logger;

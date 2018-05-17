@@ -11,7 +11,7 @@
  */
 package cn.sixlab.mbx.plugin.api.schedule;
 
-import cn.sixlab.mbx.plugin.api.DateTimeUtil;
+import cn.sixlab.mbx.plugin.api.util.DateTimeUtil;
 import cn.sixlab.mbx.plugin.api.beans.MsxAssignment;
 import cn.sixlab.mbx.plugin.api.beans.MsxAssignmentRule;
 import cn.sixlab.mbx.plugin.api.beans.MsxAssignmentRuleDetail;
