@@ -60,7 +60,7 @@ public class JsonUtil {
         return null;
     }
 
-    public static <T> T obj2Bean(Object obj, Class<T> clz) {
+    public static <T> T toBean(Object obj, Class<T> clz) {
         try {
             String json = objectMapper.writeValueAsString(obj);
             if (null != json && !"".equals(json)) {
