@@ -63,7 +63,7 @@ echo '6. 移动之前的 jar 包'
 cp /var/www/code_repo/MineboatX/mbx-web/target/mbx.jar /var/www/sixlab_config/spring/mbx.jar
 
 echo '7. 启动服务器'
-nohup java -jar mbx.jar &
+nohup java -jar mbx.jar >/var/www/sixlab_configs/spring/nohup.out 2>&1 &
 
 echo '8. 开始看日志'
-tail -f nohup.out
+tail -f /var/www/sixlab_configs/spring/nohup.out
