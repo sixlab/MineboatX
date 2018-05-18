@@ -16,6 +16,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,20 @@ public class WebUtil {
 
             if (null != requestAttributes) {
                 return (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ServletContext getServletContext() {
+        try {
+            HttpServletRequest request = getRequest();
+
+            if (null != request) {
+                return request.getServletContext();
             }
 
         } catch (Exception e) {
