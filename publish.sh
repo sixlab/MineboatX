@@ -20,10 +20,6 @@ function listPort(){
     fi
 }
 
-echo '0. 进入目录'
-
-cd /var/www/sixlab_configs/spring/;
-
 echo '1. 显示 9999 进程'
 listPort
 
@@ -37,7 +33,7 @@ echo
 echo -e "待结束进程 PID： \n\033[31m\033[05m$cmd\033[0m"
 echo
 echo '1. 输入y/Y，将自动使用 kill -9 结束进程；'
-echo '2. 输入其他字符，这手动操作，请自行输入 kill -9 XXX结束进程；'
+echo '2. 结束命令；'
 read -p "请输入后续操作:" choice
 if [[ "$choice" = "y" || "$choice" = "Y"  ]]
 then
@@ -49,8 +45,8 @@ for id in $cmd
 echo '完成kill'
 fi
 
-echo '3. 显示 9999 进程'
-listPort
+echo '3. 进入目录'
+cd /var/www/sixlab_config/spring/;
 
 echo '4. 备份之前的日志'
 t=$(date +%Y-%m-%d.%H%M%S)
@@ -60,10 +56,10 @@ echo '5. 移动之前的 jar 包'
 mv mbx.jar backup/$t.jar
 
 echo '6. 移动之前的 jar 包'
-cp /var/www/code_repo/MineboatX/mbx-web/target/mbx.jar /var/www/sixlab_config/spring/mbx.jar
+cp /var/www/code_repo/MineboatX/mbx-web/target/mbx.jar ./mbx.jar
 
 echo '7. 启动服务器'
-nohup java -jar mbx.jar >/var/www/sixlab_configs/spring/nohup.out 2>&1 &
+nohup java -jar mbx.jar >nohup.out 2>&1 &
 
 echo '8. 开始看日志'
-tail -f /var/www/sixlab_configs/spring/nohup.out
+tail -f nohup.out
