@@ -52,6 +52,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
         if (StringUtils.isEmpty(token)) {
             chain.doFilter(request, response);
+            // 403
             return;
         }
 
@@ -64,9 +65,9 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
                 chain.doFilter(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
-                chain.doFilter(request, response);
             }
         }
+        chain.doFilter(request, response);// 没有的话else里边会返回 空白的200
     }
 
     private void logParam(HttpServletRequest request) {
