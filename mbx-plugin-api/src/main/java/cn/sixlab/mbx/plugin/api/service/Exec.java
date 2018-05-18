@@ -70,6 +70,8 @@ public class Exec {
             sb.append(e);
         }
         
-        return sb.toString();
+        String result = sb.toString();
+        logger.info("运行结果：\n"+result);
+        return result;
     }
 }
