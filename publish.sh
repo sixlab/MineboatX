@@ -56,8 +56,14 @@ echo '4. 备份之前的日志'
 t=$(date +%Y-%m-%d.%H%M%S)
 mv nohup.out log/$t.log
 
-echo '5. 启动服务器'
+echo '5. 移动之前的 jar 包'
+mv mbx.jar backup/$t.jar
+
+echo '6. 移动之前的 jar 包'
+cp /var/www/code_repo/MineboatX/mbx-web/target/mbx.jar /var/www/sixlab_config/spring/mbx.jar
+
+echo '7. 启动服务器'
 nohup java -jar mbx.jar &
 
-echo '6. 开始看日志'
+echo '8. 开始看日志'
 tail -f nohup.out
