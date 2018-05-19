@@ -37,9 +37,9 @@ echo '2. 结束命令；'
 read -p "请输入后续操作:" choice
 if [[ "$choice" = "y" || "$choice" = "Y"  ]]
 then
-for id in $cmd
+for id in ${cmd}
     do
-    kill -9 $id
+    kill -9 ${id}
     echo "kill $id"
     done
 echo '完成kill'
@@ -50,16 +50,16 @@ cd /var/www/sixlab_config/spring/;
 
 echo '4. 备份之前的日志'
 t=$(date +%Y-%m-%d.%H%M%S)
-mv nohup.out log/$t.log
+mv nohup.out log/${t}.log
 
 echo '5. 移动之前的 jar 包'
-mv mbx.jar backup/$t.jar
+mv mbx.jar backup/${t}.jar
 
 echo '6. 移动之前的 jar 包'
 cp /var/www/code_repo/MineboatX/mbx-web/target/mbx.jar ./mbx.jar
 
 echo '7. 启动服务器'
-nohup java -jar mbx.jar >nohup.out 2>&1 &
+nohup java -jar mbx.jar &
 
 echo '8. 开始看日志'
 tail -f nohup.out
