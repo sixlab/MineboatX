@@ -11,10 +11,11 @@
  */
 package cn.sixlab.mbx.filter;
 
-import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
+import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.common.util.TokenUtil;
 import cn.sixlab.mbx.core.common.util.WebUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +28,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 验证用户名密码正确后，生成一个token，并将token返回给客户端
@@ -50,9 +53,14 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         MbxUser user = new MbxUser();
-        user.setUsername(req.getParameter("username"));
-        user.setPassword(req.getParameter("password"));
-
+        try {
+            Map<String, String> map = new ObjectMapper().readValue(req.getInputStream(), Map.class);
+            user.setUsername(map.get("username"));
+            user.setPassword(map.get("password"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
         return authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         user.getUsername(),
