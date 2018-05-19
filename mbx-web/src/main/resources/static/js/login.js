@@ -5,13 +5,14 @@ $(function () {
             url:"/login",
             dataType:"json",
             type:"post",
-            data:{
+            contentType: "application/json",
+            data:JSON.stringify({
                 "username": $("#username").val(),
                 "password": $("#password").val()
-            },
+            }),
             success:function (data) {
                 if(data.success && data.data.token){
-                    alert("登录成功")
+                    alert("登录成功");
                     location.href = "/user/auth/getInfo";
                 }else{
                     alert("失败：" + data.message);
