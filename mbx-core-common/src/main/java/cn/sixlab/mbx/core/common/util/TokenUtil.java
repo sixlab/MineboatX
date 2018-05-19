@@ -33,19 +33,32 @@ public class TokenUtil {
     public static String getSecret() {
         return PropertyUtil.getValue(TOKEN_JWT_SECRET);
     }
-
+    
     public static int getExpiration() {
         return PropertyUtil.getIntValue(TOKEN_JWT_EXPIRATION);
     }
-
+    
+    public static long getFinalExpiration() {
+        return PropertyUtil.getIntValue(TOKEN_JWT_EXPIRATION) + System.currentTimeMillis();
+    }
+    
     public static String getBearer() {
         return PropertyUtil.getValue(TOKEN_JWT_BEARER);
     }
     
+    public static String createToken(String username, String deviceType, long expiration) {
+        String subject = JsonUtil.toJson(new String[]{
+                "username",
+                "deviceType"
+        }, new String[]{
+                username,
+                deviceType
+        });
+    
+        return createToken(subject, expiration);
+    }
+    
     public static String createToken(String username, String deviceType) {
-        
-        long expiration = System.currentTimeMillis() + getExpiration();
-        
         String subject = JsonUtil.toJson(new String[]{
                 "username",
                 "deviceType"
@@ -54,13 +67,13 @@ public class TokenUtil {
                 deviceType
         });
         
-        return createToken(subject, expiration);
+        return createToken(subject, getFinalExpiration());
     }
     
     public static String createToken(String subject, long expiration) {
         String token = Jwts.builder()
                 .setSubject(subject)
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .setExpiration(new Date(expiration))
                 .signWith(SignatureAlgorithm.HS512, getSecret())
                 .compact();
         

@@ -80,7 +80,8 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 
         String username = ((User) auth.getPrincipal()).getUsername();
         String deviceType = WebUtil.getDeviceType();
-        String token = TokenUtil.createToken(username, deviceType);
+        long expiration = TokenUtil.getFinalExpiration();
+        String token = TokenUtil.createToken(username, deviceType, expiration);
 
         if ("app".equals(deviceType)){
             resp.addHeader(TokenUtil.getHeader(), token);
@@ -91,7 +92,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
         ModelJson json = new ModelJson();
         Map<String, Object> data = new HashMap<>();
         data.put("token", token);
-        data.put("expiration", TokenUtil.getExpiration());
+        data.put("expiration", expiration);
 
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
