@@ -50,7 +50,7 @@ public class MbxController extends BaseHandler {
         Map data = new HashMap();
         String subject = TokenUtil.getValue();
         if (StringUtils.hasLength(subject)) {
-            long expiration = System.currentTimeMillis() + TokenUtil.getExpiration();
+            long expiration = TokenUtil.getFinalExpiration();
             String token = TokenUtil.createToken(subject, expiration);
             data.put("token", token);
             data.put("expiration", expiration);
