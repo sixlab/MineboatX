@@ -137,7 +137,7 @@ public class AuthFilmHandler extends BaseHandler{
      * @return
      */
     @GetMapping(value = "/film")
-    public ModelJson search(@RequestParam String keyword) {
+    public ModelJson search(String keyword) {
         logger.debug("搜索电影>>>", keyword);
         ModelJson json = new ModelJson();
         

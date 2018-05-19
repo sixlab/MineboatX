@@ -40,7 +40,9 @@ public class DomainInterceptor implements HandlerInterceptor {
             boolean stop = false;
             if (pName.startsWith("cn.sixlab.mbx.plugin.")) {
                 String subDomain = WebUtil.getSubDomain();
-                if (domainConfig.getSub().containsKey(subDomain)) {
+                if ("".equals(subDomain) || domainConfig.getSubEscape().contains(subDomain)){
+                    stop = false;
+                }else if (domainConfig.getSub().containsKey(subDomain)) {
                     if (pName.startsWith("cn.sixlab.mbx.plugin." + domainConfig.getSub().get(subDomain))) {
                         stop = false;
                     } else {

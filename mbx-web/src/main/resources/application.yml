@@ -73,6 +73,7 @@ mbx:
       lx: lx
       api: api
     escape: localhost,sixlab.cn,sixlab.com
+    subEscape: 192,127
   webhooks:
     github: 1
     gitee: 1
