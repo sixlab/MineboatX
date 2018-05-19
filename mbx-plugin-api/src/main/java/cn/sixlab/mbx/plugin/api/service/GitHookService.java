@@ -11,12 +11,14 @@
  */
 package cn.sixlab.mbx.plugin.api.service;
 
+import cn.sixlab.mbx.core.common.base.BaseService;
 import cn.sixlab.mbx.core.common.util.DigestUtil;
 import cn.sixlab.mbx.core.common.util.JsonUtil;
 import cn.sixlab.mbx.plugin.api.util.WebhooksParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,11 +28,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class GitHookService {
+public class GitHookService extends BaseService{
     private static Logger logger = LoggerFactory.getLogger(GitHookService.class);
     
     @Autowired
     private WebhooksParam webhooksParam;
+    
+    @Autowired
+    private StringRedisTemplate template;
     
     public void github(String data, String signature) throws IOException {
         Map obj = JsonUtil.toBean(data, Map.class);
@@ -43,9 +48,7 @@ public class GitHookService {
         
         if(sha1.equals(signature)){
             if ("PatrickRoot/PatrickRoot.github.io".equals(((Map) (obj.get("repository"))).get("full_name"))) {
-                Exec.run("/var/www/blogs/", "git","pull");
-        
-                Exec.run( "/var/www/blogs/", "hexo","gen");
+                template.convertAndSend("git", "hexo");
             }
         } else {
             logger.error("密码错误：" + obj.get("password"));
@@ -65,16 +68,7 @@ public class GitHookService {
                     if (matcher.find()) {
                         String text = matcher.group(1);
                         logger.info("操作命令："+text);
-                        switch (text){
-                            case "nginx":
-                                Exec.run("/var/www/" + repo, "git", "pull");
-    
-                                Exec.run("/usr/sbin/", "service", "nginx", "reload");
-                                break;
-                            case "msx":
-                                //ServerOperator.msxRestart();
-                                break;
-                        }
+                        template.convertAndSend("git", text);
                     }
                 }
             }

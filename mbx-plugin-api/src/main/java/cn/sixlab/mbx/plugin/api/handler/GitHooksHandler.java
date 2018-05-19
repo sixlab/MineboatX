@@ -14,7 +14,6 @@ package cn.sixlab.mbx.plugin.api.handler;
 import cn.sixlab.mbx.core.common.base.BaseHandler;
 import cn.sixlab.mbx.plugin.api.service.GitHookService;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +29,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/git/hooks")
 public class GitHooksHandler extends BaseHandler {
-    private static Logger logger = LoggerFactory.getLogger(GitHooksHandler.class);
+    private Logger logger = getLogger(this);
     
     @Autowired
     private GitHookService gitHookService;

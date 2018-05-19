@@ -1,6 +1,10 @@
 server:
   port: 18080
 
+logging:
+  level:
+    cn.sixlab.mbx: debug
+
 spring:
   mvc:
     static-path-pattern: /static/**
@@ -28,7 +32,7 @@ spring:
 #    sentinel:
 #      master:
 #      nodes:
-    timeout: 0ms
+    timeout: 5000ms
   thymeleaf:
     cache: false
     mode: HTML5
@@ -62,7 +66,7 @@ mbx:
     header: Authorization
     secret: Sixlab's Mbx
     expiration: 604800000
-    bearer: Bearer|
+    bearer: Bearer-
   domain:
     sub:
       blog: ms
