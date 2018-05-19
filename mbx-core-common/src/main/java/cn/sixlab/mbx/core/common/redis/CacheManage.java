@@ -11,6 +11,7 @@
  */
 package cn.sixlab.mbx.core.common.redis;
 
+import cn.sixlab.mbx.core.beans.BaseBean;
 import cn.sixlab.mbx.core.common.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 @Component
-public class CacheManage {
+public class CacheManage implements BaseBean{
 
     @Autowired
     private StringRedisTemplate template;

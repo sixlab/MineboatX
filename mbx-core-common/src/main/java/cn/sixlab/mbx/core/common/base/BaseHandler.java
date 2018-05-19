@@ -11,5 +11,7 @@
  */
 package cn.sixlab.mbx.core.common.base;
 
-public class BaseHandler {
+import cn.sixlab.mbx.core.beans.BaseBean;
+
+public class BaseHandler implements BaseBean {
 }
