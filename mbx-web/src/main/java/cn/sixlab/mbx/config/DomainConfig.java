@@ -24,6 +24,7 @@ import java.util.List;
 public class DomainConfig {
     private HashMap<String, String> sub;
     private List<String> escape;
+    private List<String> subEscape;
     
     public HashMap<String, String> getSub() {
         return sub;
@@ -39,5 +40,13 @@ public class DomainConfig {
     
     public void setEscape(List<String> escape) {
         this.escape = escape;
+    }
+    
+    public List<String> getSubEscape() {
+        return subEscape;
+    }
+    
+    public void setSubEscape(List<String> subEscape) {
+        this.subEscape = subEscape;
     }
 }
