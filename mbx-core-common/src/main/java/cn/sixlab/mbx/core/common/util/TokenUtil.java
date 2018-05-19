@@ -41,11 +41,11 @@ public class TokenUtil {
     public static String getBearer() {
         return PropertyUtil.getValue(TOKEN_JWT_BEARER);
     }
-
+    
     public static String createToken(String username, String deviceType) {
-
+        
         long expiration = System.currentTimeMillis() + getExpiration();
-
+        
         String subject = JsonUtil.toJson(new String[]{
                 "username",
                 "deviceType"
@@ -53,15 +53,19 @@ public class TokenUtil {
                 username,
                 deviceType
         });
-
+        
+        return createToken(subject, expiration);
+    }
+    
+    public static String createToken(String subject, long expiration) {
         String token = Jwts.builder()
                 .setSubject(subject)
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(SignatureAlgorithm.HS512, getSecret())
                 .compact();
-
+        
         token = getBearer() + token;
-
+        
         return token;
     }
 
