@@ -11,11 +11,10 @@
  */
 package cn.sixlab.mbx.core.common.mq;
 
-import cn.sixlab.mbx.core.beans.BaseBean;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 
-public interface MbxMessageListener extends MessageListener, BaseBean {
+public interface MbxMessageListener extends MessageListener {
     
     @Override
     default void onMessage(Message message, byte[] bytes) {

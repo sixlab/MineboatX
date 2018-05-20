@@ -11,13 +11,13 @@
  */
 package cn.sixlab.mbx.init;
 
-import cn.sixlab.mbx.core.beans.BaseBean;
 import cn.sixlab.mbx.core.beans.entity.MbxMeta;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.common.util.EntityUtil;
 import cn.sixlab.mbx.core.dao.repository.MetaRepository;
 import cn.sixlab.mbx.core.dao.repository.UserRepository;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
@@ -28,9 +28,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(100)
-public class DataInitRunner implements ApplicationRunner,BaseBean {
-    private Logger logger = getLogger(this);
+public class DataInitRunner implements ApplicationRunner {
+    private static Logger logger = LoggerFactory.getLogger(DataInitRunner.class);
 
+    
+    
     @Autowired
     private MetaRepository metaRepository;
 

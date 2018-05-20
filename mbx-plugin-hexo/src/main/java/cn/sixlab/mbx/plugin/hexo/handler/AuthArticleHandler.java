@@ -12,6 +12,7 @@
 package cn.sixlab.mbx.plugin.hexo.handler;
 
 import cn.sixlab.mbx.core.common.base.BaseHandler;
+import cn.sixlab.mbx.core.common.util.LogUtil;
 import cn.sixlab.mbx.plugin.hexo.bean.HexoArticle;
 import cn.sixlab.mbx.plugin.hexo.service.ArticleService;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/auth/article")
 public class AuthArticleHandler extends BaseHandler {
-    private Logger logger = getLogger(this);
+    private Logger logger = LogUtil.getLogger(this);
     
     @Autowired
     private ArticleService service;

@@ -12,6 +12,7 @@
 package cn.sixlab.mbx.plugin.hexo.service;
 
 import cn.sixlab.mbx.core.common.base.BaseService;
+import cn.sixlab.mbx.core.common.util.LogUtil;
 import cn.sixlab.mbx.plugin.hexo.bean.HexoArticle;
 import cn.sixlab.mbx.plugin.hexo.util.HexoUtil;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ import java.util.List;
 
 @Service
 public class ArticleService extends BaseService{
-    private Logger logger = getLogger(this);
+    private Logger logger = LogUtil.getLogger(this);
     
     public Page<HexoArticle> articleList(PageRequest pageRequest) {
         List<HexoArticle> articleList = HexoUtil.getArticles();

@@ -11,7 +11,6 @@
  */
 package cn.sixlab.mbx.core.common.base;
 
-import cn.sixlab.mbx.core.beans.BaseBean;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,7 +26,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class BaseHandler implements BaseBean {
+public class BaseHandler {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     
     @InitBinder
@@ -55,7 +54,7 @@ public class BaseHandler implements BaseBean {
                 }
             }
         });
-    
+        
         // LocalDate 类型
         binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
             @Override
@@ -65,7 +64,7 @@ public class BaseHandler implements BaseBean {
                 }
             }
         });
-    
+        
         // LocalTime 类型
         binder.registerCustomEditor(LocalTime.class, new PropertyEditorSupport() {
             @Override
@@ -75,7 +74,7 @@ public class BaseHandler implements BaseBean {
                 }
             }
         });
-
+        
         // LocalDateTime 类型
         binder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
             @Override

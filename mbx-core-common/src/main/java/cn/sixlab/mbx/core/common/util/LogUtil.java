@@ -6,16 +6,18 @@
  * For more information, please see
  * https://sixlab.cn/
  *
- * @time: 2018/5/19 21:33
+ * @time: 2018/5/21 00:56
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.core.beans;
+package cn.sixlab.mbx.core.common.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public interface BaseBean {
-    default Logger getLogger(BaseBean bean){
-        return LoggerFactory.getLogger(bean.getClass());
+public class LogUtil {
+    
+    public static Logger getLogger(Object object) {
+        return LoggerFactory.getLogger(object.getClass());
     }
+    
 }
