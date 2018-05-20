@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class MbxController extends BaseHandler {
+public class MbxHandler extends BaseHandler {
 
     @RequestMapping("/index")
     public String index(){
@@ -41,7 +41,7 @@ public class MbxController extends BaseHandler {
         //}
         //
         //System.out.println("3");
-        return "login";
+        return "index";
     }
     
     @ResponseBody
