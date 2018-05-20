@@ -9,7 +9,7 @@
  * @time: 2018/5/20 22:44
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.plugin.hexo.handler;
+package cn.sixlab.mbx.plugin.ms.handler;
 
 import cn.sixlab.mbx.core.common.base.BaseHandler;
 import org.springframework.stereotype.Controller;
@@ -22,6 +22,6 @@ public class IndexMsHandler extends BaseHandler {
     @RequestMapping("")
     public String index(ModelMap modelMap) {
         modelMap.put("sub", "ms");
-        return "index";
+        return "login";
     }
 }

@@ -23,6 +23,6 @@ public class IndexHexoHandler extends BaseHandler {
     public String index(ModelMap modelMap) {
         modelMap.put("sub", "hexo");
         modelMap.put("url", "/auth/article/list");
-        return "index";
+        return "login";
     }
 }
