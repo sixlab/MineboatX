@@ -13,7 +13,12 @@ $(function () {
             success:function (data) {
                 if(data.success && data.data.token){
                     alert("登录成功");
-                    location.href = "/auth/user/getInfo";
+                    var url = $("#url").val();
+                    if(url){
+                        location.href = url;
+                    }else{
+                        location.href = "/auth/user/getInfo";
+                    }
                 }else{
                     alert("失败：" + data.message);
                 }
