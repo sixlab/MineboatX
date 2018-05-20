@@ -38,6 +38,9 @@ public class HexoUtil {
         List<HexoArticle> articles = getArticles();
         Date e = new Date();
         System.out.println(e.getTime() - b.getTime());
+        for (HexoArticle article : articles) {
+            System.out.println(article.getDate());
+        }
     }
     
     public static List<HexoArticle> getArticles() {
@@ -55,6 +58,13 @@ public class HexoUtil {
                 articles.add(article);
             }
         }
+        articles.sort((o1, o2) -> {
+            String date1 = o1.getDate().replaceAll("\\ |\\-|\\:","");
+            String date2 = o2.getDate().replaceAll("\\ |\\-|\\:", "");
+            long d1 = Long.parseLong(date1);
+            long d2 = Long.parseLong(date2);
+            return (d1 - d2) > 0 ? -1 : 1;
+        });
         
         HexoCache.articles = articles;
         return articles;
