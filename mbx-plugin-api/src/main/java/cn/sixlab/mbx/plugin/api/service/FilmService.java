@@ -22,8 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -34,7 +33,7 @@ public class FilmService {
     private FilmRepo filmRepo;
     
     public MsxFilm addFilm(MsxFilm film) {
-        film.setInsertTime(Timestamp.from(Instant.now()));
+        film.setInsertTime(LocalDateTime.now());
         filmRepo.save(film);
         
         return film;

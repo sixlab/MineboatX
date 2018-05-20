@@ -11,16 +11,16 @@
  */
 package cn.sixlab.mbx.plugin.api.service;
 
-import cn.sixlab.mbx.plugin.api.util.CONST;
 import cn.sixlab.mbx.plugin.api.beans.MsxShow;
 import cn.sixlab.mbx.plugin.api.dao.ShowRepo;
+import cn.sixlab.mbx.plugin.api.util.CONST;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -48,7 +48,7 @@ public class ShowService {
 
     public MsxShow addShow(MsxShow show) {
         show.setViewStatus(CONST.SHOW_V_STATUS_ING);
-        show.setBeginDate(new Date());
+        show.setBeginDate(LocalDate.now());
         showRepo.save(show);
 
         //hisService.beginShow(show);
@@ -59,7 +59,7 @@ public class ShowService {
         MsxShow show = showRepo.getOne(id);
         show.setShowEpisode(1);
         show.setShowSeason(season);
-        show.setUpdateDate(new Date());
+        show.setUpdateDate(LocalDate.now());
         showRepo.save(show);
 
         //hisService.addSeason(show);
@@ -69,7 +69,7 @@ public class ShowService {
     public MsxShow updateEpisode(Integer id, Integer episode) {
         MsxShow show = showRepo.getOne(id);
         show.setShowEpisode(episode);
-        show.setUpdateDate(new Date());
+        show.setUpdateDate(LocalDate.now());
         showRepo.save(show);
 
         //hisService.addEpisode(toolsShow);
@@ -79,7 +79,7 @@ public class ShowService {
     public MsxShow updateViewStatus(Integer id, String viewStatus) {
         MsxShow show = showRepo.getOne(id);
         show.setViewStatus(viewStatus);
-        show.setUpdateDate(new Date());
+        show.setUpdateDate(LocalDate.now());
         showRepo.save(show);
         
         return showRepo.getOne(id);
@@ -89,7 +89,7 @@ public class ShowService {
         MsxShow show = showRepo.getOne(id);
         show.setShowSeason(season);
         show.setShowEpisode(episode);
-        show.setUpdateDate(new Date());
+        show.setUpdateDate(LocalDate.now());
         showRepo.save(show);
         
         return showRepo.getOne(id);

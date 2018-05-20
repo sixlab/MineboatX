@@ -12,7 +12,6 @@
 package cn.sixlab.mbx.plugin.ms.handler;
 
 import cn.sixlab.mbx.core.common.base.BaseHandler;
-import cn.sixlab.mbx.core.common.util.ContextUtil;
 import cn.sixlab.mbx.plugin.ms.beans.MsArchive;
 import cn.sixlab.mbx.plugin.ms.beans.MsComment;
 import cn.sixlab.mbx.plugin.ms.service.ArchiveService;
@@ -27,16 +26,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/archives")
 public class ArchiveHandler extends BaseHandler {
-
+    
     @Autowired
     private ArchiveService service;
+    
+    @Autowired
+    private CommentService commentService;
 
     @RequestMapping("/{archiveId}")
     public String archive(@PathVariable Integer archiveId, ModelMap model) {
 
         MsArchive archive = service.getArchive(archiveId);
 
-        CommentService commentService = ContextUtil.getBean(CommentService.class);
         Page<MsComment> result = commentService.list(null, null, archiveId);
 
         model.put("archive", archive);

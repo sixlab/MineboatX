@@ -16,7 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
@@ -24,7 +24,7 @@ public class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Character deleted;
-    private Timestamp insertTime;
+    private LocalDateTime insertTime;
 
     public Integer getId() {
         return id;
@@ -41,12 +41,12 @@ public class BaseEntity implements Serializable {
     public void setDeleted(Character deleted) {
         this.deleted = deleted;
     }
-
-    public Timestamp getInsertTime() {
+    
+    public LocalDateTime getInsertTime() {
         return insertTime;
     }
-
-    public void setInsertTime(Timestamp insertTime) {
+    
+    public void setInsertTime(LocalDateTime insertTime) {
         this.insertTime = insertTime;
     }
 }

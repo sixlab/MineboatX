@@ -17,7 +17,7 @@ import org.springframework.core.env.Environment;
 public class PropertyUtil {
 
     public static String getValue(String key) {
-        Environment bean = ContextUtil.getBean(Environment.class);
+        Environment bean = Ctx.getBean(Environment.class);
         if (bean.containsProperty(key)) {
             return bean.getProperty(key);
         }
@@ -25,7 +25,7 @@ public class PropertyUtil {
     }
 
     public static String getValue(String key, String defaultValue) {
-        Environment bean = ContextUtil.getBean(Environment.class);
+        Environment bean = Ctx.getBean(Environment.class);
         if (bean.containsProperty(key)) {
             return bean.getProperty(key);
         }

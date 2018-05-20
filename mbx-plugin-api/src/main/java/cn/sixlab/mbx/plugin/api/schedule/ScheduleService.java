@@ -75,7 +75,7 @@ public class ScheduleService {
             
             String date = localDate.getYear() + "/" + localDate.getMonthValue() + "/" + localDate.getDayOfMonth();
             //String url = "https://sixlab.cn/assignment/pub/" + date;
-            String url = "https://sixlab.cn/assignment/pub/apps/" + date;
+            String url = "https://sixlab.cn/assignment/apps/" + date;
             
             int count = assignmentRepo.countAllByAssignmentDate(Date.valueOf(localDate));
             
@@ -167,7 +167,7 @@ public class ScheduleService {
                 assignment.setRemark(rule.getRuleRemark());
                 assignment.setAssignmentName(rule.getRuleName());
                 assignment.setFinishCheck(false);
-                assignment.setInsertTime(insertTime);
+                assignment.setInsertTime(LocalDateTime.now());
                 assignment.setRuleId(rule.getId());
                 
                 assignmentRepo.save(assignment);

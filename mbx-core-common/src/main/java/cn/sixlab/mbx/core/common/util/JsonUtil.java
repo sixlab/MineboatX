@@ -11,20 +11,20 @@
  */
 package cn.sixlab.mbx.core.common.util;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class JsonUtil {
-    private final static ObjectMapper objectMapper;
-
-    static {
-        objectMapper = new ObjectMapper();
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    private static ObjectMapper objectMapper;
+    
+    @Autowired
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        JsonUtil.objectMapper = objectMapper;
     }
 
     public static String toJson(String[] keys, Object[] vals){

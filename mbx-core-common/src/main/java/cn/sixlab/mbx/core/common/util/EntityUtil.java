@@ -13,13 +13,15 @@ package cn.sixlab.mbx.core.common.util;
 
 import cn.sixlab.mbx.core.beans.BaseEntity;
 
+import java.time.LocalDateTime;
+
 public class EntityUtil {
     public static void setVal(BaseEntity entity) {
         if (null == entity.getDeleted()) {
             entity.setDeleted('0');
         }
         if (null == entity.getInsertTime()) {
-            entity.setInsertTime(TimeUtil.now());
+            entity.setInsertTime(LocalDateTime.now());
         }
     }
 }
