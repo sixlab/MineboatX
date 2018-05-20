@@ -48,7 +48,7 @@ public class DigestUtil {
     }
     
     public static String encode(String data, String algorithm) {
-        byte[] bytes = data.getBytes(Digest.UTF8);
+        byte[] bytes = data.getBytes(Encoding.UTF8);
         try {
             MessageDigest instance = MessageDigest.getInstance(algorithm);
             byte[] digest = instance.digest(bytes);
