@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head(title, keywords)">
     <title th:text="${title} + ' | 六楼实验室'">六楼实验室</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -8,10 +7,10 @@
     <meta name="keywords" th:content="${keywords}+' 六楼实验室,sixlab,六楼的雨'" content="六楼实验室,sixlab,六楼的雨"/>
 
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script th:src="@{/static/js/ms.js}"></script>
+    <script th:src="@{/static/js/hexo.js}"></script>
 
-    <link th:href="@{/static/css/ms.css}" rel="stylesheet" type="text/css" media="all"/>
-    <link th:href="@{/static/iconfont/ms/iconfont.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/static/css/hexo.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/static/iconfont/hexo/iconfont.css}" rel="stylesheet" type="text/css" media="all"/>
 </head>
 <body>
 

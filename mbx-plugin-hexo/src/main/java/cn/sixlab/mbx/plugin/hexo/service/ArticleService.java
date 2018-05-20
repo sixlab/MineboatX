@@ -32,8 +32,8 @@ public class ArticleService extends BaseService{
     
         pageRequest = PageRequest.of(0, total);
     
-        PageImpl<HexoArticle> content = new PageImpl(articleList, pageRequest, total);
+        PageImpl<HexoArticle> result = new PageImpl(articleList, pageRequest, total);
         
-        return content;
+        return result;
     }
 }
