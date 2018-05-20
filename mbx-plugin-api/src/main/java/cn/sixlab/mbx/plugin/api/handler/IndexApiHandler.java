@@ -22,6 +22,6 @@ public class IndexApiHandler extends BaseHandler {
     @RequestMapping("/api")
     public String index(ModelMap modelMap) {
         modelMap.put("sub", "api");
-        return "index";
+        return "login";
     }
 }

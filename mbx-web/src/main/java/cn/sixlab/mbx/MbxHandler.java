@@ -41,7 +41,7 @@ public class MbxHandler extends BaseHandler {
         //}
         //
         //System.out.println("3");
-        return "index";
+        return "login";
     }
     
     @ResponseBody
