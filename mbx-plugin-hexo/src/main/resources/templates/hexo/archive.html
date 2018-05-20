@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="ms/layout::head(文章列表,文章列表)"></head>
+<body>
+
+<script th:src="@{/static/js/ms/archive.js}"></script>
+<link th:href="@{/static/css/ms/archive.css}" rel="stylesheet" type="text/css" media="all"/>
+
+<header th:replace="ms/layout::header"></header>
+
+<aside>
+1
+</aside>
+
+<article>
+    <div class="article">
+        <h1 class="article-title" th:text="${archive.title}"></h1>
+        <div class="article-info">
+            <div class="meta">
+                <span class="publish-time"
+                      th:title="${'最后编辑于 '+#dates.format(archive.lastModifyTime, 'yyyy-MM-dd HH:mm')}"
+                      th:text="${#dates.format(archive.postTime, 'yyyy-MM-dd HH:mm')}"></span>
+                <span class="word-count" th:text="${'字数 '+archive.charCount}">字数 3496</span>
+                <span class="views-count" th:text="${'阅读 '+archive.viewCount}">阅读 4230</span>
+                <span class="comments-count" th:text="${'评论 '+archive.commentCount}">评论 32</span></div>
+        </div>
+        <div class="article-content">
+            <div class="show-content-free" th:utext="${archive.content}">
+
+            </div>
+        </div>
+        <div class="article-copyright">
+            © 著作权归作者所有
+        </div>
+    </div>
+
+    <div class="article-foot">
+        <div class="article-tag">
+            <a class="category" th:href="@{'/archives/category/'+${archive.categoryId}}">
+                <i class="iconfont icon-category"></i>
+                <span th:text="${archive.category}"></span>
+            </a>
+            <a class="tag" th:href="@{'/archives/category/'+${archive.categoryId}}">
+                <i class="iconfont icon-category"></i>
+                <span th:text="${archive.category}"></span>
+            </a>
+            <a class="tag" th:href="@{'/archives/category/'+${archive.categoryId}}">
+                <i class="iconfont icon-category"></i>
+                <span th:text="${archive.category}"></span>
+            </a>
+        </div>
+    </div>
+
+    <div th:insert="~{ms/comments::comment-list}">
+    </div>
+</article>
+
+<footer th:replace="ms/layout::footer"></footer>
+
+</body>
+</html>
