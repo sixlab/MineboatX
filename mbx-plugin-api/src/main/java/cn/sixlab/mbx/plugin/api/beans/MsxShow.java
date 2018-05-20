@@ -14,7 +14,7 @@ package cn.sixlab.mbx.plugin.api.beans;
 import cn.sixlab.mbx.core.beans.BaseEntity;
 
 import javax.persistence.Entity;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class MsxShow extends BaseEntity{
@@ -25,8 +25,8 @@ public class MsxShow extends BaseEntity{
     private String tv;
     private String remark;
     private String doubanKey;
-    private Date beginDate;
-    private Date updateDate;
+    private LocalDate beginDate;
+    private LocalDate updateDate;
     
     public String getShowName() {
         return showName;
@@ -84,20 +84,19 @@ public class MsxShow extends BaseEntity{
         this.doubanKey = doubanKey;
     }
     
-    public Date getBeginDate() {
+    public LocalDate getBeginDate() {
         return beginDate;
     }
     
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
     }
     
-    public Date getUpdateDate() {
+    public LocalDate getUpdateDate() {
         return updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
     }
-    
 }

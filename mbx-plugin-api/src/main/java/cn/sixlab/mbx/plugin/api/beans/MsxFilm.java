@@ -14,7 +14,7 @@ package cn.sixlab.mbx.plugin.api.beans;
 import cn.sixlab.mbx.core.beans.BaseEntity;
 
 import javax.persistence.Entity;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class MsxFilm extends BaseEntity{
@@ -22,7 +22,7 @@ public class MsxFilm extends BaseEntity{
     private String produceYear;
     private String director;
     private String remark;
-    private Date viewDate;
+    private LocalDate viewDate;
     private String doubanKey;
     private Double doubanScore;
     private String doubanInfo;
@@ -61,11 +61,11 @@ public class MsxFilm extends BaseEntity{
         this.remark = remark;
     }
     
-    public Date getViewDate() {
+    public LocalDate getViewDate() {
         return viewDate;
     }
     
-    public void setViewDate(Date viewDate) {
+    public void setViewDate(LocalDate viewDate) {
         this.viewDate = viewDate;
     }
     

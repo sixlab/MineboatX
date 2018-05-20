@@ -12,7 +12,7 @@
 package cn.sixlab.mbx.plugin.ms.handler;
 
 import cn.sixlab.mbx.core.common.base.BaseHandler;
-import cn.sixlab.mbx.core.common.util.ContextUtil;
+import cn.sixlab.mbx.core.common.util.Ctx;
 import cn.sixlab.mbx.plugin.ms.beans.MsArchive;
 import cn.sixlab.mbx.plugin.ms.service.ArchiveService;
 import org.springframework.data.domain.Page;
@@ -27,7 +27,7 @@ public class PageHandler extends BaseHandler {
 
     @RequestMapping("/{pageNo}")
     public String archive(@PathVariable Integer pageNo, ModelMap model) {
-        ArchiveService service = ContextUtil.getBean(ArchiveService.class);
+        ArchiveService service = Ctx.getBean(ArchiveService.class);
 
         Page<MsArchive> result = service.queryRecent(pageNo, null);
 

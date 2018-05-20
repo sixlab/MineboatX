@@ -12,6 +12,78 @@
 package cn.sixlab.mbx.core.common.base;
 
 import cn.sixlab.mbx.core.beans.BaseBean;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+
+import java.beans.PropertyEditorSupport;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class BaseHandler implements BaseBean {
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        dateFormat.setLenient(false);
+        
+        // Date 类型  true:允许输入空值，false:不能为空值
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        
+        binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String value) {
+                if (!StringUtils.isEmpty(value)) {
+                    setValue(new Date(Long.valueOf(value)));
+                }
+            }
+        });
+        
+        // Timestamp 类型
+        binder.registerCustomEditor(Timestamp.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String value) {
+                if (!StringUtils.isEmpty(value)) {
+                    setValue(new Timestamp(Long.valueOf(value)));
+                }
+            }
+        });
+    
+        // LocalDate 类型
+        binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String value) {
+                if (!StringUtils.isEmpty(value)) {
+                    setValue(Instant.ofEpochMilli(Long.valueOf(value)).atZone(ZoneId.systemDefault()).toLocalDate());
+                }
+            }
+        });
+    
+        // LocalTime 类型
+        binder.registerCustomEditor(LocalTime.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String value) {
+                if (!StringUtils.isEmpty(value)) {
+                    setValue(Instant.ofEpochMilli(Long.valueOf(value)).atZone(ZoneId.systemDefault()).toLocalTime());
+                }
+            }
+        });
+
+        // LocalDateTime 类型
+        binder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String value) {
+                if (!StringUtils.isEmpty(value)) {
+                    setValue(Instant.ofEpochMilli(Long.valueOf(value)).atZone(ZoneId.systemDefault()).toLocalDateTime());
+                }
+            }
+        });
+    }
 }

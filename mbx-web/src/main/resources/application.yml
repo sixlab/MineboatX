@@ -44,7 +44,7 @@ spring:
           paths: /**
   mail:
     default-encoding: utf-8
-    host: smtp.XXXX.cn
+    host: smtp.XXXX.cn`
     username: XXX@XXX.cn
     password: XXXXXXX
     protocol: smtps
@@ -59,6 +59,14 @@ spring:
           auth: true
           socketFactory:
             class: javax.net.ssl.SSLSocketFactory
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+      write-durations-as-timestamps: true
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    time-zone: GMT+8
+    default-property-inclusion: non_null
 
 mbx:
   version: '@project.version@'
