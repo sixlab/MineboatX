@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mineboat 登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Mineboat 登录"/>
+
+    <link th:href="@{/static/css/login.css}" rel="stylesheet" type="text/css" media="all"/>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script th:src="@{/static/js/login.js}"></script>
+</head>
+<body>
+
+<div class="login-form">
+    <div class="top-login">
+        <span><img th:src="@{/static/images/group.png}" alt=""/></span>
+    </div>
+    <h1 th:if="${sub}" th:text="${sub+' 子系统登录'}">登录</h1>
+    <h1 th:if="!${sub}">sixlab 登录</h1>
+    <div class="login-top">
+        <form>
+            <div class="login-ic">
+                <i></i>
+                <input type="text" value="用户名" onFocus="this.value = '';"
+                       id="username"
+                       onBlur="if (this.value == '') {this.value = '用户名';}"/>
+                <div class="clear"></div>
+            </div>
+            <div class="login-ic">
+                <i class="icon"></i>
+                <input type="password" value="密码" onFocus="this.value = '';"
+                       id="password"
+                       onBlur="if (this.value == '') {this.value = '密码';}"/>
+                <div class="clear"></div>
+            </div>
+
+            <div class="log-bwn">
+                <input type="submit" id="submitBtn" value="Login">
+            </div>
+        </form>
+    </div>
+    <p class="copy">©2018 六楼实验室 豫ICP备15033629号</p>
+</div>
+</body>
+</html>

@@ -11,9 +11,9 @@
  */
 package cn.sixlab.mbx.core.handle;
 
-import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
 import cn.sixlab.mbx.core.common.base.BaseHandler;
+import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.common.util.TokenUtil;
 import cn.sixlab.mbx.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
-public class UserHandle extends BaseHandler {
+@RequestMapping("/auth/user")
+public class AuthUserHandle extends BaseHandler {
     @Autowired
     private UserService service;
 
     @ResponseBody
-    @RequestMapping("/auth/getInfo")
+    @RequestMapping("/getInfo")
     public ModelJson getInfo() {
         MbxUser mbxUser = service.getUser(TokenUtil.getUsername());
 

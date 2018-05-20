@@ -34,8 +34,12 @@ public class GitMqListener implements MbxMessageListener {
                     case "nginx":
                         log = Exec.run("/var/www/sixlab_config", "git", "pull");
                         logger.info(log);
-    
+        
                         log = Exec.run("/usr/sbin/", "service", "nginx", "reload");
+                        logger.info(log);
+                        break;
+                    case "config":
+                        log = Exec.run("/var/www/sixlab_config", "git", "pull");
                         logger.info(log);
                         break;
                     case "hexo":

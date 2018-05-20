@@ -16,15 +16,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.List;
 
 @Component
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "mbx.domain")
 public class DomainConfig {
     private HashMap<String, String> sub;
-    private List<String> escape;
-    private List<String> subEscape;
     
     public HashMap<String, String> getSub() {
         return sub;
@@ -32,21 +29,5 @@ public class DomainConfig {
     
     public void setSub(HashMap<String, String> sub) {
         this.sub = sub;
-    }
-    
-    public List<String> getEscape() {
-        return escape;
-    }
-    
-    public void setEscape(List<String> escape) {
-        this.escape = escape;
-    }
-    
-    public List<String> getSubEscape() {
-        return subEscape;
-    }
-    
-    public void setSubEscape(List<String> subEscape) {
-        this.subEscape = subEscape;
     }
 }
