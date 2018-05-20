@@ -15,6 +15,7 @@ import cn.sixlab.mbx.core.common.util.Encoding;
 import cn.sixlab.mbx.plugin.hexo.bean.HexoArticle;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class HexoUtil {
     private static String hexoPath;
     private static String hexoPostPath;

@@ -33,11 +33,17 @@ public class AuthArticleHandler extends BaseHandler {
     
     @RequestMapping("/list")
     public String list(ModelMap map, Integer pageNo, Integer pageSize) {
+        if (null == pageNo) {
+            pageNo = 0;
+        }
+        if (null == pageSize) {
+            pageSize = 10;
+        }
         PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
     
-        Page<HexoArticle> content = service.articleList(pageRequest);
+        Page<HexoArticle> result = service.articleList(pageRequest);
     
-        map.put("content", content);
+        map.put("result", result);
         
         return "hexo/article/list";
     }
