@@ -11,11 +11,12 @@
  */
 package cn.sixlab.mbx.plugin.hexo.bean;
 
-public class HexoArchive {
+public class HexoArticle {
     private String fileId;
     private String archiveId;
     private String title;
     private String content;
+    private String subject;
     private String[] tags;
     private String[] categories;
     private String date;
@@ -50,6 +51,14 @@ public class HexoArchive {
     
     public void setContent(String content) {
         this.content = content;
+    }
+    
+    public String getSubject() {
+        return subject;
+    }
+    
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
     
     public String[] getTags() {

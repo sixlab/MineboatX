@@ -11,10 +11,7 @@
  */
 package cn.sixlab.mbx.core.common.util;
 
-import java.nio.charset.Charset;
-
 public class Digest {
-    public static Charset UTF8 = Charset.forName("utf-8");
     public static String MD5 = "MD5";
     public static String SHA1 = "SHA-1";
 }
