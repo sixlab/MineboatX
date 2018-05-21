@@ -33,7 +33,9 @@ echo
 echo -e "待结束进程 PID： \n\033[31m\033[05m$cmd\033[0m"
 echo
 echo '1. 输入y/Y，将自动使用 kill -9 结束进程；'
-echo '2. 结束命令；'
+echo '2. 输入n/N，退出发布；'
+echo '3. ctrl+c/结束命令，退出发布；'
+echo '4. 其他输入，不结束进程，继续发布。'
 read -p "请输入后续操作:" choice
 if [[ "$choice" = "y" || "$choice" = "Y"  ]]
 then
@@ -43,6 +45,10 @@ for id in ${cmd}
     echo "kill $id"
     done
 echo '完成kill'
+fi
+if [[ "$choice" = "n" || "$choice" = "N"  ]]
+then
+    exit
 fi
 
 echo '3. 进入目录'
