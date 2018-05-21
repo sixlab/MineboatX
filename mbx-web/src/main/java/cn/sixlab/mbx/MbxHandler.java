@@ -11,10 +11,14 @@
  */
 package cn.sixlab.mbx;
 
+import cn.sixlab.mbx.config.DomainConfig;
 import cn.sixlab.mbx.core.common.base.BaseHandler;
 import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.common.util.TokenUtil;
+import cn.sixlab.mbx.core.common.util.WebUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,24 +30,23 @@ import java.util.Map;
 @Controller
 public class MbxHandler extends BaseHandler {
 
-    @RequestMapping("/index")
-    public String index(){
-        //System.out.println("1");
-        //System.out.println("2");
-        //
-        //PropertySourcesPlaceholderConfigurer bean = ContextUtil.getBean(PropertySourcesPlaceholderConfigurer.class);
-        //PropertySources propertySources = bean.getAppliedPropertySources();
-        //Iterator<PropertySource<?>> iterator = propertySources.iterator();
-        //while (iterator.hasNext()){
-        //    PropertySource<?> next = iterator.next();
-        //    System.out.println(next.getName());
-        //    System.out.println(next.getProperty("mbx.jwt.header"));
-        //}
-        //
-        //System.out.println("3");
-        return "login";
+    @Autowired
+    private DomainConfig domainConfig;
+
+    @RequestMapping(value = {"/index","","/"})
+    public String index(ModelMap map){
+        String subDomain = WebUtil.getSubDomain();
+        String pluginName = domainConfig.getSub().get(subDomain);
+
+        String result = "login";
+        if(StringUtils.hasLength(pluginName)){
+            result = "forward:/index/" + pluginName;
+        }
+        map.put("url","https://sixlab.cn/");
+
+        return result;
     }
-    
+
     @ResponseBody
     @GetMapping("/auth/login/refresh")
     public ModelJson refreshToken() {
