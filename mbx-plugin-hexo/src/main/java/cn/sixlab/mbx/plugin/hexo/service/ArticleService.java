@@ -37,4 +37,8 @@ public class ArticleService extends BaseService{
         
         return result;
     }
+    
+    public HexoArticle article(String fileId) {
+        return HexoUtil.getArticle(fileId);
+    }
 }

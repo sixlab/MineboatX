@@ -72,8 +72,8 @@ public class HexoUtil {
         return articles;
     }
     
-    private static HexoArticle getArticle(String filename) {
-        return getArticle(new File(filename));
+    public static HexoArticle getArticle(String filename) {
+        return getArticle(new File(hexoPostPath + File.separator + filename+".md"));
     }
     
     private static HexoArticle getArticle(File file) {

@@ -34,6 +34,15 @@ public class AuthArticleHandler extends BaseHandler {
     
     @RequestMapping("/list")
     public String list(ModelMap map, Integer pageNo, Integer pageSize) {
+        return articleList(map, pageNo, pageSize);
+    }
+    
+    @RequestMapping("/list/{pageSize}")
+    public String list(ModelMap map, @PathVariable Integer pageSize) {
+        return articleList(map, 0, pageSize);
+    }
+    
+    private String articleList(ModelMap map, Integer pageNo, Integer pageSize) {
         if (null == pageNo) {
             pageNo = 0;
         }
@@ -41,32 +50,27 @@ public class AuthArticleHandler extends BaseHandler {
             pageSize = 10;
         }
         PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
-    
+        
         Page<HexoArticle> result = service.articleList(pageRequest);
-    
+        
         map.put("result", result);
         
         return "hexo/article/list";
     }
     
-    @RequestMapping("/{articleId}")
-    public String article(@PathVariable String articleId, ModelMap map) {
+    @RequestMapping("/new")
+    public String newArticle() {
         
-        return article(map, articleId);
+        return "hexo/article/article";
     }
     
-    @RequestMapping("/{year}/{month}/{day}/{articleId}")
-    public String archive(@PathVariable String year, @PathVariable String month,
-            @PathVariable String day,
-            @PathVariable String articleId, ModelMap map) {
-        articleId = year + "/" + month + "/" + day + "/" + articleId;
-    
-        return article(articleId, map);
-    }
-    
-    private String article(ModelMap map, String articleId) {
+    @RequestMapping("/edit/{fileId}")
+    public String edit(@PathVariable String fileId, ModelMap map) {
         
+        HexoArticle article = service.article(fileId);
         
-        return "hexo/article";
+        map.put("article", article);
+        
+        return "hexo/article/article";
     }
 }
