@@ -1,0 +1,54 @@
+html, body, #editor {
+    margin: 0;
+    /*height: 100%;*/
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+}
+
+textarea, #editor div {
+    display: inline-block;
+    border: none;
+    border: 1px solid #ccc;
+    width: 49%;
+    height: 800px;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 0 20px;
+    overflow: scroll;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+    background-color: #f6f6f6;
+    font-size: 14px;
+    font-family: 'Monaco', courier, monospace;
+    padding: 20px;
+}
+
+code {
+    color: #f66;
+}
+
+#buttons {
+    margin-top: 20px;
+}
+
+#buttons input, #buttons span {
+    width: 45%;
+    height: 25px;
+    line-height: 25px;
+}
+
+#buttons input{
+    margin: 0 20px;
+}
+
+#buttons a {
+    text-decoration: none;
+    background-color: dodgerblue;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 20px;
+}

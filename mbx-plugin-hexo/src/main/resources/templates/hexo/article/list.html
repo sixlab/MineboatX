@@ -4,15 +4,15 @@
 <head th:replace="/hexo/layout::head(文章列表,文章列表)"></head>
 <body>
 
-<script th:src="@{/static/js/hexo/archives.js}"></script>
-<link th:href="@{/static/css/hexo/archives.css}" rel="stylesheet" type="text/css" media="all"/>
+<script th:src="@{/static/js/hexo/list.js}"></script>
+<link th:href="@{/static/css/hexo/list.css}" rel="stylesheet" type="text/css" media="all"/>
 
 <header th:replace="/hexo/layout::header"></header>
 
 <article>
     <div id="archive-list">
         <div class="archive-item" th:each="archive,archiveStat : ${result.content}">
-            <div class="archive-title"><h2><a th:href="@{'/archives/'+${archive.archiveId}}" th:text="${archive.title}"
+            <div class="archive-title"><h2><a th:href="@{'/auth/article/edit/'+${archive.fileId}}" th:text="${archive.title}"
                                               target="_blank"></a></h2>
                 <!--/*
                 <div class="archive-info"><span class="archive-char-count"

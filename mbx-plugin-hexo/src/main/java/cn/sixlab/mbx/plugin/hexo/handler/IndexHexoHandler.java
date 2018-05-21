@@ -22,7 +22,7 @@ public class IndexHexoHandler extends BaseHandler {
     @RequestMapping(value = {"", "/"})
     public String index(ModelMap modelMap) {
         modelMap.put("sub", "hexo");
-        modelMap.put("url", "/auth/article/list");
+        modelMap.put("url", "/auth/article/list/10");
         return "login";
     }
 }
