@@ -16,7 +16,6 @@ import cn.sixlab.mbx.core.common.util.WebUtil;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DomainInterceptor implements HandlerInterceptor {
     private static String packageName = "cn.sixlab.mbx.plugin.";
-    
+
     private DomainConfig domainConfig;
     
     public DomainInterceptor(DomainConfig subDomain) {
@@ -40,20 +39,11 @@ public class DomainInterceptor implements HandlerInterceptor {
         }
 
         if(handler instanceof HandlerMethod){
-            String requestURI = request.getRequestURI();
             String subDomain = WebUtil.getSubDomain();
             String pluginName = domainConfig.getSub().get(subDomain);
-            
             //如果所访问的二级域名没有在配置列表中，随便访问
             //只要在 nginx 配置排除通过 ip 访问的，并且不用一级域名来访问，正式环境没问题
             if(StringUtils.hasLength(pluginName)){
-                //先判断是不是首页，如果是，就跳转到指定的 plugin 首页。
-                if ("/".equals(requestURI) || "".equals(requestURI) || "/index".equals(requestURI)) {
-                    // forward to a view
-                    ModelAndView mav = new ModelAndView("forward:/index/" + pluginName);
-                    // eventually populate the model
-                    throw new ModelAndViewDefiningException(mav);
-                }
                 
                 //非首页，就要判断是不是可访问了。
                 String pName = ((HandlerMethod) handler).getBeanType().getPackage().getName();
