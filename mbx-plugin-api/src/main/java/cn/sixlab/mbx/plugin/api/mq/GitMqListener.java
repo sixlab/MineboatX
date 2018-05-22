@@ -45,10 +45,24 @@ public class GitMqListener implements MbxMessageListener {
                     case "hexo":
                         log = Exec.run("/var/www/blogs/", "git", "pull");
                         logger.info(log);
-    
+        
                         log = Exec.run("/var/www/blogs/", "git", "submodule", "update");
                         logger.info(log);
-    
+        
+                        log = Exec.run("/var/www/blogs/", "hexo", "g");
+                        logger.info(log);
+                        break;
+                    case "push":
+                        log = Exec.run("/var/www/blogs/", "git", "add", ".");
+                        logger.info(log);
+        
+                        log = Exec.run("/var/www/blogs/", "git", "commit", "-m", "autoBot");
+                        logger.info(log);
+        
+                        log = Exec.run("/var/www/blogs/", "git", "push");
+                        logger.info(log);
+                        break;
+                    case "publish":
                         log = Exec.run("/var/www/blogs/", "hexo", "g");
                         logger.info(log);
                         break;

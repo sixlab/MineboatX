@@ -21,28 +21,45 @@ $(function () {
     new Vue({
         el: '#root',
         data: {
-            input: $("#editor textarea").val(),
+            content: $("#editor textarea").val(),
             fileId: $("#fileId").val()
         },
         computed: {
             compiledMarkdown: function () {
-                return converter.makeHtml(this.input)
+                return converter.makeHtml(this.content)
             }
         },
         methods: {
-            update: _.debounce(function (e) {
-                this.input = e.target.value
+            updateContent: _.debounce(function (e) {
+                this.content = e.target.value
             }, 300),
-            updateInput: _.debounce(function (e) {
+            updateField: _.debounce(function (e) {
                 this.fileId = e.target.value
             }, 300),
             save:function () {
-                localStorage.setItem(this.fileId, this.input);
+                localStorage.setItem(this.fileId, this.content);
                 $("#buttons").slideDown(50);
             },
             submit:function () {
-                console.log(this.input);
-                console.log(this.fileId);
+                $.ajax({
+                    url:"/auth/article/submit?_t=" + (new Date().getTime()),
+                    data:{
+                        fileId:this.fileId,
+                        content:this.content
+                    },
+                    type:"post",
+                    dataType:"json",
+                    success:function(data){
+                        if(data.success){
+                            alert("成功");
+                        } else{
+                            alert("失败");
+                        }
+                    },
+                    error:function (err) {
+                        console.log(err)
+                    }
+                });
             }
         }
     })

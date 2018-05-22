@@ -24,15 +24,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ArticleService extends BaseService{
+public class ArticleService extends BaseService {
     private Logger logger = LogUtil.getLogger(this);
     
     public Page<HexoArticle> articleList(PageRequest pageRequest) {
         List<HexoArticle> articleList = HexoUtil.getArticles();
         int total = articleList.size();
-    
+        
         pageRequest = PageRequest.of(0, total);
-    
+        
         PageImpl<HexoArticle> result = new PageImpl(articleList, pageRequest, total);
         
         return result;
@@ -40,5 +40,15 @@ public class ArticleService extends BaseService{
     
     public HexoArticle article(String fileId) {
         return HexoUtil.getArticle(fileId);
+    }
+    
+    public boolean submitArticle(String fileId, String content) {
+        boolean saved = HexoUtil.saveArticle(fileId, content);
+        return saved;
+    }
+    
+    public Boolean deleteArticle(String fileId) {
+        boolean saved = HexoUtil.deleteArticle(fileId);
+        return saved;
     }
 }

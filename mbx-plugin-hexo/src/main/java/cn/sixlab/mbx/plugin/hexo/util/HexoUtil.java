@@ -17,10 +17,11 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -32,17 +33,6 @@ public class HexoUtil {
     public void setHexoPath(String hexoPath) {
         this.hexoPath = hexoPath;
         this.hexoPostPath = hexoPath + "/source/_posts";
-    }
-    
-    public static void main(String[] args) {
-        new HexoUtil().setHexoPath("/Users/patrick/six_myspace/PatrickRoot.github.io");
-        Date b = new Date();
-        List<HexoArticle> articles = getArticles();
-        Date e = new Date();
-        System.out.println(e.getTime() - b.getTime());
-        for (HexoArticle article : articles) {
-            System.out.println(article.getDate());
-        }
     }
     
     public static List<HexoArticle> getArticles() {
@@ -70,6 +60,23 @@ public class HexoUtil {
         
         HexoCache.articles = articles;
         return articles;
+    }
+    
+    public static boolean saveArticle(String fileId, String content) {
+        try {
+            File file = new File(hexoPostPath + File.separator + fileId + ".md");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+    
+            BufferedWriter out = new BufferedWriter(new FileWriter(file));
+            out.write(content);
+            out.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
     
     public static HexoArticle getArticle(String filename) {
@@ -127,5 +134,14 @@ public class HexoUtil {
         }
         HexoCache.lastModified = lastModified;
         return false;
+    }
+    
+    public static boolean deleteArticle(String fileId) {
+        File file = new File(hexoPostPath + File.separator + fileId + ".md");
+        if (file.exists()) {
+            file.delete();
+        }
+    
+        return true;
     }
 }
