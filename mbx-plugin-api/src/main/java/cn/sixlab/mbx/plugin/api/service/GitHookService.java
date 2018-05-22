@@ -48,7 +48,8 @@ public class GitHookService extends BaseService{
         
         if(sha1.equals(signature)){
             if ("PatrickRoot/PatrickRoot.github.io".equals(((Map) (obj.get("repository"))).get("full_name"))) {
-                template.convertAndSend("git", "hexo");
+                String msg = ((Map) obj.get("head_commit")).get("message").toString();
+                sendMq(msg);
             }
         } else {
             logger.error("密码错误：" + obj.get("password"));
@@ -63,17 +64,22 @@ public class GitHookService extends BaseService{
                 List<Map> commits = (List) obj.get("commits");
                 for (Map commit : commits) {
                     String msg = commit.get("message").toString();
-                    Pattern pattern = Pattern.compile("\\$.*\\(\\s*(.*?)\\s*\\)");
-                    Matcher matcher = pattern.matcher(msg);
-                    if (matcher.find()) {
-                        String text = matcher.group(1);
-                        logger.info("操作命令："+text);
-                        template.convertAndSend("git", text);
-                    }
+    
+                    sendMq(msg);
                 }
             }
         } else {
             logger.error("密码错误：" + obj.get("password"));
+        }
+    }
+    
+    private void sendMq(String msg) {
+        Pattern pattern = Pattern.compile("\\$.*\\(\\s*(.*?)\\s*\\)");
+        Matcher matcher = pattern.matcher(msg);
+        if (matcher.find()) {
+            String text = matcher.group(1);
+            logger.info("操作命令："+text);
+            template.convertAndSend("git", text);
         }
     }
 }
