@@ -11,16 +11,19 @@
 
 <div id="root">
 
-    <div id="editor">
-        <textarea th:field="${article.content}" :value="input" @input="update"></textarea>
+    <div id="editor" >
+        <textarea th:if="${edit}" th:field="${article.content}" :value="content" @input="updateContent"></textarea>
+        <textarea th:if="${!edit}" :value="content" @input="updateContent"></textarea>
         <div v-html="compiledMarkdown"></div>
     </div>
 
     <div id="buttons">
-        <input id="fileId" :value="fileId" @input="updateInput" type="text" th:field="${article.fileId}" />
+        <input id="fileId" :value="fileId" @input="updateField" type="text" th:if="${edit}" th:field="${article.fileId}" />
+        <input id="fileId" :value="fileId" @input="updateField" type="text" th:if="${!edit}"/>
         <span>
         <a href="###" @click="save">保存文章</a>
         <a href="###" @click="submit">提交文章</a>
+        <a href="@{/auth/article/list}" target="_blank">文章列表</a>
         </span>
     </div>
 </div>

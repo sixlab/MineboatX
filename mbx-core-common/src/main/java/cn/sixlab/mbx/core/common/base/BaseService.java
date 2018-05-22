@@ -12,8 +12,6 @@
 package cn.sixlab.mbx.core.common.base;
 
 import cn.sixlab.mbx.core.dao.BaseRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -37,4 +35,5 @@ public abstract class BaseService<E, ID extends Serializable> {
     public E get(ID id) {
         return getRepository().getOne(id);
     }
+    
 }
