@@ -12,65 +12,27 @@
 package cn.sixlab.mbx.plugin.api.mq;
 
 import cn.sixlab.mbx.core.common.mq.MbxMessageListener;
-import cn.sixlab.mbx.plugin.api.service.Exec;
+import cn.sixlab.mbx.plugin.api.service.CommandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import java.io.IOException;
 
 @Component
 public class GitMqListener implements MbxMessageListener {
     private static Logger logger = LoggerFactory.getLogger(GitMqListener.class);
     
+    @Autowired
+    private CommandService service;
+    
     @Override
     public void onMessage(String message) {
         logger.info("消息：" + message);
-        if(StringUtils.hasLength(message)){
-            try {
-                String log;
-                switch (message) {
-                    case "nginx":
-                        log = Exec.run("/var/www/sixlab_config", "git", "pull");
-                        logger.info(log);
-        
-                        log = Exec.run("/usr/sbin/", "service", "nginx", "reload");
-                        logger.info(log);
-                        break;
-                    case "config":
-                        log = Exec.run("/var/www/sixlab_config", "git", "pull");
-                        logger.info(log);
-                        break;
-                    case "hexo":
-                        log = Exec.run("/var/www/blogs/", "git", "pull");
-                        logger.info(log);
-        
-                        log = Exec.run("/var/www/blogs/", "git", "submodule", "update");
-                        logger.info(log);
-        
-                        log = Exec.run("/var/www/blogs/", "hexo", "g");
-                        logger.info(log);
-                        break;
-                    case "push":
-                        log = Exec.run("/var/www/blogs/", "git", "add", ".");
-                        logger.info(log);
-        
-                        log = Exec.run("/var/www/blogs/", "git", "commit", "-m", "autoBot");
-                        logger.info(log);
-        
-                        log = Exec.run("/var/www/blogs/", "git", "push");
-                        logger.info(log);
-                        break;
-                    case "publish":
-                        log = Exec.run("/var/www/blogs/", "hexo", "g");
-                        logger.info(log);
-                        break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-    
+        if (StringUtils.hasLength(message)) {
+            
+            service.runCommand(message);
+            
         }
     }
 }

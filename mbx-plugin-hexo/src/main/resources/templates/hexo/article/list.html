@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:mbx="http://www.w3.org/1999/xhtml">
-<head th:replace="/hexo/layout::head(文章列表,文章列表)"></head>
+<head th:replace="hexo/layout::head(文章列表,文章列表)"></head>
 <body>
 
-<script th:src="@{/static/js/hexo/list.js}"></script>
-<link th:href="@{/static/css/hexo/list.css}" rel="stylesheet" type="text/css" media="all"/>
+<script th:src="@{/static/jshexo/list.js}"></script>
+<link th:href="@{/static/csshexo/list.css}" rel="stylesheet" type="text/css" media="all"/>
 
-<header th:replace="/hexo/layout::header"></header>
+<header th:replace="hexo/layout::header"></header>
 
 <article>
     <div id="buttons">
@@ -49,7 +49,7 @@
     </div>
 </article>
 
-<footer th:replace="/hexo/layout::footer"></footer>
+<footer th:replace="hexo/layout::footer"></footer>
 
 </body>
 </html>

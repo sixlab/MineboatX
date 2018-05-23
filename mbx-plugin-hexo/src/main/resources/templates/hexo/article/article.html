@@ -12,14 +12,12 @@
 <div id="root">
 
     <div id="editor" >
-        <textarea th:if="${edit}" th:field="${article.content}" :value="content" @input="updateContent"></textarea>
-        <textarea th:if="${!edit}" :value="content" @input="updateContent"></textarea>
+        <textarea th:field="${article.content}" :value="content" @input="updateContent"></textarea>
         <div v-html="compiledMarkdown"></div>
     </div>
 
     <div id="buttons">
-        <input id="fileId" :value="fileId" @input="updateField" type="text" th:if="${edit}" th:field="${article.fileId}" />
-        <input id="fileId" :value="fileId" @input="updateField" type="text" th:if="${!edit}"/>
+        <input id="fileId" :value="fileId" @input="updateField" type="text" th:field="${article.fileId}" />
         <span>
         <a href="###" @click="save">保存文章</a>
         <a href="###" @click="submit">提交文章</a>
