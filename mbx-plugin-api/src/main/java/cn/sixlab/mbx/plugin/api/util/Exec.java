@@ -9,7 +9,7 @@
  * @time: 2018/1/26 17:38
  * @author: Patrick <root@sixlab.cn>
  */
-package cn.sixlab.mbx.plugin.api.service;
+package cn.sixlab.mbx.plugin.api.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

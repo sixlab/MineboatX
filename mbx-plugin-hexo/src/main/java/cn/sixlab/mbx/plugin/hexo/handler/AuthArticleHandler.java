@@ -27,6 +27,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Controller
 @RequestMapping("/auth/article")
 public class AuthArticleHandler extends BaseHandler {
@@ -86,7 +89,26 @@ public class AuthArticleHandler extends BaseHandler {
     
     @RequestMapping("/new")
     public String newArticle(ModelMap map) {
+    
+        HexoArticle article = new HexoArticle();
+    
+        LocalDateTime localDate = LocalDateTime.now();
+        String fileId = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd-"));
+        String date = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String id = localDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd/"));
+        article.setFileId(fileId);
+        article.setContent("---\n" +
+                "title: \n" +
+                "id: \n" + id +
+                "date: \n" + date +
+                "categories:\n" +
+                "  - 未分类\n" +
+                "tags:\n" +
+                "  - 未定义\n" +
+                "tocnum: false\n" +
+                "---\n");
         
+        map.put("article", article);
         map.put("edit", false);
         
         return "hexo/article/article";
