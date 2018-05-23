@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+t=$(date +%Y-%m-%d.%H%M%S)
+
 function listPort(){
     echo '以下为服务器 9999 端口所占用进程，请检查'
     head=$(lsof -i:9999|grep 'PID')
@@ -19,6 +21,8 @@ function listPort(){
         echo "我的应用 $biao"
     fi
 }
+
+echo '现在时间：'${t}
 
 echo '1. 更新代码'
 git pull
@@ -61,7 +65,6 @@ echo '5. 进入目录'
 cd /var/www/sixlab_config/spring/;
 
 echo '6. 备份之前的日志'
-t=$(date +%Y-%m-%d.%H%M%S)
 mv nohup.out log/${t}.log
 
 echo '7. 移动之前的 jar 包'
