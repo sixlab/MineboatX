@@ -89,9 +89,9 @@ public class AuthArticleHandler extends BaseHandler {
     
     @RequestMapping("/new")
     public String newArticle(ModelMap map) {
-    
+        
         HexoArticle article = new HexoArticle();
-    
+        
         LocalDateTime localDate = LocalDateTime.now();
         String fileId = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd-"));
         String date = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -106,7 +106,8 @@ public class AuthArticleHandler extends BaseHandler {
                 "tags:\n" +
                 "  - 未定义\n" +
                 "tocnum: false\n" +
-                "---\n");
+                "---\n" +
+                "{% img lightImg postImg lightCenter /images/fileId/filename.png 400 %}");
         
         map.put("article", article);
         map.put("edit", false);
@@ -129,7 +130,7 @@ public class AuthArticleHandler extends BaseHandler {
     @RequestMapping("/push")
     public ModelJson push() {
         ModelJson json = new ModelJson();
-    
+        
         template.convertAndSend("git", "push");
         
         return json;
@@ -139,7 +140,7 @@ public class AuthArticleHandler extends BaseHandler {
     @RequestMapping("/publish")
     public ModelJson publish() {
         ModelJson json = new ModelJson();
-    
+        
         template.convertAndSend("git", "publish");
         
         return json;
