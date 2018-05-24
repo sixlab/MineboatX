@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:mbx="http://www.w3.org/1999/xhtml">
+<head th:replace="hexo/layout::head(图片上传,图片上传)"></head>
+<body>
+
+<script th:src="@{/static/js/hexo/upload.js}"></script>
+<link th:href="@{/static/css/hexo/upload.css}" rel="stylesheet" type="text/css" media="all"/>
+
+<header th:replace="hexo/layout::header"></header>
+
+<article>
+    <form id="uploadFrm" enctype="multipart/form-data" method="post" action="/auth/images/upload">
+        图片 <input type="file" name="file" />
+        <input type="text" name="filename">
+        <input type="text" name="path">
+        <a id="upload-btn" href="javascript:void(0)">上传</a>
+    </form>
+</article>
+
+<footer th:replace="hexo/layout::footer"></footer>
+
+</body>
+</html>

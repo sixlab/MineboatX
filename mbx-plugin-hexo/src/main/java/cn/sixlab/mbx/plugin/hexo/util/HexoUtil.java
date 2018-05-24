@@ -35,6 +35,14 @@ public class HexoUtil {
         this.hexoPostPath = hexoPath + "/source/_posts";
     }
     
+    public static String postPath() {
+        return hexoPostPath;
+    }
+    
+    public static String imgPath() {
+        return hexoPath+"/source/images";
+    }
+    
     public static List<HexoArticle> getArticles() {
         if (notChange()) {
             return HexoCache.articles;
