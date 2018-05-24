@@ -35,6 +35,9 @@ public class CommandService extends BaseService{
             case "hexo":
                 hexo("/var/www/blogs/");
                 break;
+            case "hexog":
+                hexoGen("/var/www/blogs/");
+                break;
             case "push":
                 hexoPush("/var/www/blogs/", "autoBot");
                 break;

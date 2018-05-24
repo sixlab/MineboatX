@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/command")
-public class CommandHandler extends BaseHandler {
+@RequestMapping("/auth/command")
+public class AuthCommandHandler extends BaseHandler {
     private Logger logger = LogUtil.getLogger(this);
     
     @Autowired
@@ -34,7 +34,7 @@ public class CommandHandler extends BaseHandler {
     @Autowired
     private StringRedisTemplate template;
     
-    @PostMapping(value = "/shell/${command}")
+    @PostMapping(value = "/shell/{command}")
     public String github(@PathVariable String command) {
         logger.info("来自 shell ：" + command);
         if (StringUtils.hasLength(command)) {
