@@ -17,6 +17,7 @@ import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.common.util.TokenUtil;
 import cn.sixlab.mbx.core.common.util.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -45,6 +46,13 @@ public class MbxHandler extends BaseHandler {
         map.put("url","https://sixlab.cn/");
 
         return result;
+    }
+    
+    @RequestMapping(value = "/logout")
+    public String logout(ModelMap map) {
+        WebUtil.delCookie(TokenUtil.getHeader());
+        SecurityContextHolder.clearContext();
+        return "result";
     }
 
     @ResponseBody

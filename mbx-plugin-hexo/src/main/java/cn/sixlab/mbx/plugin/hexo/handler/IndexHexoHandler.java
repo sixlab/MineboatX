@@ -12,6 +12,7 @@
 package cn.sixlab.mbx.plugin.hexo.handler;
 
 import cn.sixlab.mbx.core.common.base.BaseHandler;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexHexoHandler extends BaseHandler {
     @RequestMapping(value = {"", "/"})
     public String index(ModelMap modelMap) {
+        String uri = "/auth/article/list/10";
+        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
+            return "redirect:"+uri;
+        }
+        
         modelMap.put("sub", "hexo");
-        modelMap.put("url", "/auth/article/list/10");
+        modelMap.put("url", uri);
         return "login";
     }
 }

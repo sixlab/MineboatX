@@ -4,6 +4,21 @@
     margin-top: 12px;
 }
 
+.archive-item .archive-title .delete {
+    font-weight: 500;
+    color: white;
+    font-size: 20px;
+    padding: 5px 10px;
+    background-color: #df5000;
+    display: inline-block;
+    float: right;
+}
+
+.archive-item .archive-title .delete:hover {
+    color: white;
+    background-color: #df3000;
+}
+
 .archive-item .archive-title h2 {
     font-size: 20px;
     line-height: 28px;

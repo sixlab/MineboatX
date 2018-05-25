@@ -29,7 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -42,6 +44,30 @@ public class AuthImagesHandler extends BaseHandler {
         
         
         return "hexo/images/upload";
+    }
+    
+    @RequestMapping("/list")
+    public String list(ModelMap map, String path) {
+    
+        String filePath = HexoUtil.imgPath();
+    
+        if (StringUtils.hasLength(path)) {
+            filePath += File.separator + path;
+        }
+        
+        File imageDir = new File(filePath);
+    
+        List<String> filenames = new ArrayList<>();
+        if(imageDir.exists()){
+            File[] files = imageDir.listFiles(pathname -> pathname.isFile());
+    
+            for (File file : files) {
+                filenames.add(file.getName());
+            }
+        }
+        map.put("files", filenames);
+        
+        return "hexo/images/list";
     }
     
     @ResponseBody

@@ -10,17 +10,14 @@
 <header th:replace="hexo/layout::header"></header>
 
 <article>
-    <div id="buttons">
-        <a href="###" id="publish">重新发布</a>
-        <a href="###" id="push">提交代码</a>
-    </div>
     <div id="archive-list">
         <div class="archive-item" th:each="archive,archiveStat : ${result.content}">
             <div class="archive-title">
                 <h2>
+                    <a th:href="@{'/auth/article/edit/'+${archive.fileId}}" target="_blank"
+                       th:text="${(archiveStat.index+1)+'. '+archive.title}"></a>
+
                     <a href="###" th:data-fileId="${archive.fileId}" class="delete">删除</a>
-                    <a th:href="@{'/auth/article/edit/'+${archive.fileId}}" th:text="${archive.title}"
-                                              target="_blank"></a>
                 </h2>
                 <!--/*
                 <div class="archive-info"><span class="archive-char-count"

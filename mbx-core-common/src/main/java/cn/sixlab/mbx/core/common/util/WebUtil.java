@@ -169,6 +169,10 @@ public class WebUtil {
         return "";
     }
     
+    public static void delCookie(String key) {
+        addCookie(key, null, 0);
+    }
+    
     public static String getDomain() {
         StringBuffer sb = getRequest().getRequestURL();
         sb.delete(0, sb.indexOf("://") + 3);

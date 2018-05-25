@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:mbx="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="hexo/layout::head(图片上传,图片上传)"></head>
 <body>
 
@@ -11,9 +10,9 @@
 
 <article>
     <form id="uploadFrm" enctype="multipart/form-data" method="post" action="/auth/images/upload">
-        图片 <input type="file" name="file" />
-        <input type="text" name="filename">
-        <input type="text" name="path">
+        <input type="file" name="file" />
+        <input type="text" placeholder="filename" name="filename">
+        <input type="text" placeholder="path" name="path">
         <a id="upload-btn" href="javascript:void(0)">上传</a>
     </form>
 </article>
