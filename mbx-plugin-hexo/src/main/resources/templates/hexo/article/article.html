@@ -4,27 +4,28 @@
 <body>
 
 <script src="https://cdn.bootcss.com/showdown/1.8.6/showdown.min.js"></script>
-<script src="https://cdn.bootcss.com/lodash.js/4.17.10/lodash.min.js"></script>
-<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
 <script th:src="@{/static/js/hexo/article.js}"></script>
 <link th:href="@{/static/css/hexo/article.css}" rel="stylesheet" type="text/css" media="all" />
 
-<div id="root">
+<header th:replace="hexo/layout::header"></header>
 
-    <div id="editor" >
-        <textarea th:field="${article.content}" :value="content" @input="updateContent"></textarea>
-        <div v-html="compiledMarkdown"></div>
+<article>
+    <div id="editor">
+        <textarea id="inputText" th:field="${article.content}"></textarea>
+        <iframe id="preview"></iframe>
     </div>
 
     <div id="buttons">
-        <input id="fileId" :value="fileId" @input="updateField" type="text" th:field="${article.fileId}" />
+        <input id="fileId" type="text" th:field="${article.fileId}" />
         <span>
-        <a href="###" @click="save">保存文章</a>
-        <a href="###" @click="submit">提交文章</a>
-        <a href="@{/auth/article/list}" target="_blank">文章列表</a>
+            <a href="javascript:void(0)" id="saveBtn">保存文章</a>
+            <a href="javascript:void(0)" id="submitBtn">提交文章</a>
+            <a href="javascript:void(0)" id="imageList">图片列表</a>
         </span>
     </div>
-</div>
+</article>
+
+<footer th:replace="hexo/layout::footer"></footer>
 
 </body>
 </html>

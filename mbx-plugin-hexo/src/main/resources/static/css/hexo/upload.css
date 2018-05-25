@@ -6,3 +6,11 @@
     border-radius: 5px;
     padding: 10px 20px;
 }
+
+#uploadFrm input{
+    display: block;
+    line-height: 50px;
+    height: 30px;
+    width: 200px;
+    margin: 20px;
+}

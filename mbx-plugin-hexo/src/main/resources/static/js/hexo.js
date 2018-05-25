@@ -12,7 +12,7 @@ function checkMinesiteApis(apiName, funcName, func) {
     }
 }
 
-checkMinesiteApis(window.MinesiteApi, "loadPage", function (selector, url, type, params) {
+checkMinesiteApis("MinesiteApi", "loadPage", function (selector, url, type, params) {
     if (!type) {
         type = "GET";
     }
@@ -42,5 +42,43 @@ $(function () {
     $(document).on("click", ".mbx-pagination .active.num", function () {
         var pageNo = $(this).data("num");
         window.MinesitePageApi.queryPage(pageNo);
+    });
+
+    $(document).off("click", "#hexoGen");
+    $(document).on("click", "#hexoGen", function () {
+        $.ajax({
+            url: "/auth/article/publish?_t=" + (new Date().getTime()),
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    alert("成功");
+                } else {
+                    alert("失败");
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    });
+
+    $(document).off("click", "#submitCode");
+    $(document).on("click", "#submitCode", function () {
+        $.ajax({
+            url: "/auth/article/push?_t=" + (new Date().getTime()),
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    alert("成功");
+                } else {
+                    alert("失败");
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
     });
 });

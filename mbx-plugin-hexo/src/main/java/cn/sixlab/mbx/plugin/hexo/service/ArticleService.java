@@ -31,6 +31,8 @@ public class ArticleService extends BaseService {
         List<HexoArticle> articleList = HexoUtil.getArticles();
         int total = articleList.size();
         
+        articleList = articleList.subList(0, pageRequest.getPageSize());
+        
         pageRequest = PageRequest.of(0, total);
         
         PageImpl<HexoArticle> result = new PageImpl(articleList, pageRequest, total);

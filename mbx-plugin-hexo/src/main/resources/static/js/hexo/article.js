@@ -18,49 +18,62 @@ $(function () {
     showdown.setOption('sanitize', false);
     var converter = new showdown.Converter();
 
-    new Vue({
-        el: '#root',
-        data: {
-            content: $("#editor textarea").val(),
-            fileId: $("#fileId").val()
-        },
-        computed: {
-            compiledMarkdown: function () {
-                return converter.makeHtml(this.content)
-            }
-        },
-        methods: {
-            updateContent: _.debounce(function (e) {
-                this.content = e.target.value
-            }, 300),
-            updateField: _.debounce(function (e) {
-                this.fileId = e.target.value
-            }, 300),
-            save:function () {
-                localStorage.setItem(this.fileId, this.content);
-                $("#buttons").slideDown(50);
+    $("#saveBtn").click(function () {
+        var fileId = $("#editor textarea").val();
+        var content = $("#fileId").val();
+        localStorage.setItem(fileId, content);
+        $("#buttons").slideDown(50);
+    });
+
+    $("#submitBtn").click(function () {
+        var fileId = $("#editor textarea").val();
+        var content = $("#fileId").val();
+        $.ajax({
+            url: "/auth/article/submit?_t=" + (new Date().getTime()),
+            data: {
+                fileId: fileId,
+                content: content
             },
-            submit:function () {
-                $.ajax({
-                    url:"/auth/article/submit?_t=" + (new Date().getTime()),
-                    data:{
-                        fileId:this.fileId,
-                        content:this.content
-                    },
-                    type:"post",
-                    dataType:"json",
-                    success:function(data){
-                        if(data.success){
-                            alert("成功");
-                        } else{
-                            alert("失败");
-                        }
-                    },
-                    error:function (err) {
-                        console.log(err)
-                    }
-                });
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    alert("成功");
+                    location.href="/auth/article/list/10"
+                } else {
+                    alert("失败");
+                }
+            },
+            error: function (err) {
+                console.log(err)
             }
-        }
-    })
+        });
+    });
+
+    $("#imageList").click(function () {
+        $.ajax({
+            url: "/auth/images/list?_t=" + (new Date().getTime()),
+            data: {
+                path: $("#fileId").val()
+            },
+            type: "get",
+            success: function (data) {
+                setHtml(data);
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    });
+
+    $(document).on('input propertychange', '#inputText', function () {
+        var html = converter.makeHtml($("#inputText").val());
+        setHtml(html);
+    });
+
+    $("#inputText").trigger("propertychange");
+
+    function setHtml(html) {
+        $("#preview").contents().find("body").html(html);
+    }
 });
