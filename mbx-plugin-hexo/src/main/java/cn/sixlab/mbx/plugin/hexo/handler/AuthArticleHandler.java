@@ -106,6 +106,7 @@ public class AuthArticleHandler extends BaseHandler {
                 "tags:\n" +
                 "  - 未定义\n" +
                 "tocnum: false\n" +
+                "comments: true\n" +
                 "---\n" +
                 "{% img lightImg postImg lightCenter /images/fileId/filename.png 400 %}");
         
