@@ -19,15 +19,15 @@ $(function () {
     var converter = new showdown.Converter();
 
     $("#saveBtn").click(function () {
-        var fileId = $("#editor textarea").val();
-        var content = $("#fileId").val();
+        var fileId = $("#fileId").val();
+        var content = $("#editor textarea").val();
         localStorage.setItem(fileId, content);
         $("#buttons").slideDown(50);
     });
 
     $("#submitBtn").click(function () {
-        var fileId = $("#editor textarea").val();
-        var content = $("#fileId").val();
+        var fileId = $("#fileId").val();
+        var content = $("#editor textarea").val();
         $.ajax({
             url: "/auth/article/submit?_t=" + (new Date().getTime()),
             data: {
