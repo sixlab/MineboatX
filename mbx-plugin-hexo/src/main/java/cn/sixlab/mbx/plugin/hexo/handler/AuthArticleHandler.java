@@ -97,18 +97,18 @@ public class AuthArticleHandler extends BaseHandler {
         String date = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         String id = localDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd/"));
         article.setFileId(fileId);
-        article.setContent("---\n" +
-                "title: \n" +
-                "id: \n" + id +
-                "date: \n" + date +
-                "categories:\n" +
-                "  - 未分类\n" +
-                "tags:\n" +
-                "  - 未定义\n" +
-                "tocnum: false\n" +
-                "comments: true\n" +
-                "---\n" +
-                "{% img lightImg postImg lightCenter /images/fileId/filename.png 400 %}");
+        article.setContent("---" +
+                "\ntitle: " +
+                "\nid: " + id +
+                "\ndate: " + date +
+                "\ncategories:" +
+                "\n  - 未分类" +
+                "\ntags:" +
+                "\n  - 未定义" +
+                "\ntocnum: false" +
+                "\ncomments: true" +
+                "\n---" +
+                "\n{% img lightImg postImg lightCenter /images/fileId/filename.png 400 %}");
         
         map.put("article", article);
         map.put("edit", false);
