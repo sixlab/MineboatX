@@ -216,3 +216,13 @@ Temporary Items
 .apdisk
 
 **/.gitignore
+
+### VisualStudioCode template
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+.project
+.classpath

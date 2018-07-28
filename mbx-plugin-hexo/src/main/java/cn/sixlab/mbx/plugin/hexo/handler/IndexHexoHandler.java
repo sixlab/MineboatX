@@ -12,18 +12,37 @@
 package cn.sixlab.mbx.plugin.hexo.handler;
 
 import cn.sixlab.mbx.core.common.base.BaseHandler;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/index/hexo")
 public class IndexHexoHandler extends BaseHandler {
+    private static Logger logger = LoggerFactory.getLogger(MbxHandler.class);
+
     @RequestMapping(value = {"", "/"})
     public String index(ModelMap modelMap) {
         String uri = "/auth/article/list/10";
-        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean logined = false;
+        if ( null != authentication.getPrincipal() ) {
+            String username = (String) authentication.getPrincipal();
+
+            if( StringUtils.hasLength(username) && !"anonymousUser".equalsIgnoreCase(username) ){
+                logined = true;
+            }
+        }
+
+        logger.info(logined);
+
+        if ( logined ) {
             return "redirect:"+uri;
         }
         
