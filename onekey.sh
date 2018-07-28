@@ -62,10 +62,11 @@ then
 fi
 
 echo '5. 进入目录'
-cd /var/www/sixlab_config/spring/;
+cd /var/www/sixlab_config/spring/
 
 echo '6. 备份之前的日志'
 mv nohup.out log/${t}.log
+touch nohup.out
 
 echo '7. 移动之前的 jar 包'
 mv mbx.jar backup/${t}.jar
