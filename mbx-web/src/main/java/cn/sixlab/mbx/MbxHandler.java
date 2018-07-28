@@ -16,6 +16,8 @@ import cn.sixlab.mbx.core.common.base.BaseHandler;
 import cn.sixlab.mbx.core.common.beans.ModelJson;
 import cn.sixlab.mbx.core.common.util.TokenUtil;
 import cn.sixlab.mbx.core.common.util.WebUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,7 @@ import java.util.Map;
 
 @Controller
 public class MbxHandler extends BaseHandler {
+    private static Logger logger = LoggerFactory.getLogger(MbxHandler.class);
 
     @Autowired
     private DomainConfig domainConfig;
@@ -45,6 +48,8 @@ public class MbxHandler extends BaseHandler {
         }
         map.put("url","https://sixlab.cn/");
 
+        logger.info(result);
+        
         return result;
     }
     
