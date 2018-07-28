@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/index/hexo")
 public class IndexHexoHandler extends BaseHandler {
-    private static Logger logger = LoggerFactory.getLogger(MbxHandler.class);
+    private static Logger logger = LoggerFactory.getLogger(IndexHexoHandler.class);
 
     @RequestMapping(value = {"", "/"})
     public String index(ModelMap modelMap) {
@@ -40,7 +40,7 @@ public class IndexHexoHandler extends BaseHandler {
             }
         }
 
-        logger.info(logined);
+        logger.info("hexo登录状态:"+logined);
 
         if ( logined ) {
             return "redirect:"+uri;
