@@ -16,7 +16,6 @@ import cn.sixlab.mbx.core.common.util.LogUtil;
 import cn.sixlab.mbx.plugin.api.service.CommandService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,9 +29,6 @@ public class AuthCommandHandler extends BaseHandler {
     
     @Autowired
     private CommandService service;
-    
-    @Autowired
-    private StringRedisTemplate template;
     
     @PostMapping(value = "/shell/{command}")
     public String github(@PathVariable String command) {

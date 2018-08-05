@@ -46,12 +46,20 @@ echo '1. 输入y/Y，将自动使用 kill -9 结束进程；'
 echo '2. 输入n/N，退出发布；'
 echo '3. ctrl+c/结束命令，退出发布；'
 echo '4. 其他输入，不结束进程，继续发布。'
+read -p "请输入后续操作:" choice
+if [[ "$choice" = "y" || "$choice" = "Y"  ]]
+then
 for id in ${cmd}
     do
     kill -9 ${id}
     echo "kill $id"
     done
 echo '完成kill'
+fi
+if [[ "$choice" = "n" || "$choice" = "N"  ]]
+then
+    exit
+fi
 
 echo '5. 进入目录'
 cd /var/www/sixlab_config/spring/
@@ -68,3 +76,6 @@ cp /var/www/code_repo/MineboatX/mbx-web/target/mbx.jar ./mbx.jar
 
 echo '9. 启动服务器'
 nohup java -jar mbx.jar &
+
+echo '10. 开始看日志'
+tail -f nohup.out
