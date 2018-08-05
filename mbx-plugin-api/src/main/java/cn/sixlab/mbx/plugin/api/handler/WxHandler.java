@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 
 @Controller
-@RequestMapping("/auth/wx")
+@RequestMapping("/wx")
 public class WxHandler extends BaseHandler {
     private static Logger logger = LoggerFactory.getLogger(WxHandler.class);
     

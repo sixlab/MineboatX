@@ -28,7 +28,7 @@ echo '1. 更新代码'
 git pull
 
 echo '2. 打包代码'
-mvn clean install -Dmaven.test.skip=true 
+mvn clean install -Dmaven.test.skip=true
 
 echo '3. 显示 9999 进程'
 listPort
