@@ -69,7 +69,7 @@ public class CommandService extends BaseService{
     
     public boolean mavenServer(String dir) {
         try {
-            String log = Exec.run(dir, "mvn", "clean", "install");
+            String log = Exec.run(dir, "mvn", "clean", "install","-Dmaven.test.skip=true");
             logger.info(log);
             
             return true;

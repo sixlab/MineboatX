@@ -38,7 +38,7 @@ public class AuthCommandHandler extends BaseHandler {
             service.runCommand(command);
             
         }
-        return "ok";
+        return "success";
     }
     
 }
