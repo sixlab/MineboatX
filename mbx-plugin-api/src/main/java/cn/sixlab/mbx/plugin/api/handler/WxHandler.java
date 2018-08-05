@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +39,7 @@ public class WxHandler extends BaseHandler {
     @Autowired
     private SecretService secretService;
     
+    @ResponseBody
     @RequestMapping("/push")
     public String push(HttpServletRequest request, HttpServletResponse response,
             String signature, String timestamp, String nonce, String echostr) throws Exception {

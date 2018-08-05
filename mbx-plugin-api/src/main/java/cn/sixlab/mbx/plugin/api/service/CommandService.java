@@ -47,7 +47,6 @@ public class CommandService extends BaseService{
             case "server":
                 pullCode("/var/www/code_repo/MineboatX");
                 mavenServer("/var/www/code_repo/MineboatX");
-                startServer("/var/www/code_repo/MineboatX");
                 break;
             default:
                 logger.info("没有：" + command);
