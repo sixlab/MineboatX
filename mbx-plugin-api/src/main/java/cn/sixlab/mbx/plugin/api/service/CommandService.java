@@ -44,10 +44,39 @@ public class CommandService extends BaseService{
             case "publish":
                 hexoGen("/var/www/blogs/");
                 break;
+            case "server":
+                pullCode("/var/www/code_repo/MineboatX");
+                mavenServer("/var/www/code_repo/MineboatX");
+                startServer("/var/www/code_repo/MineboatX");
+                break;
             default:
                 logger.info("没有：" + command);
         }
         
+    }
+    
+    public boolean startServer(String dir) {
+        try {
+            String log = Exec.run(dir, "./onekey.sh");
+            logger.info(log);
+            
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean mavenServer(String dir) {
+        try {
+            String log = Exec.run(dir, "mvn", "clean", "install");
+            logger.info(log);
+            
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
     
     public boolean nginx() {
