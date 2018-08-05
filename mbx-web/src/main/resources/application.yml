@@ -89,3 +89,14 @@ mbx:
     gitee: 1
   hexo:
     path: /Users/patrick/six_myspace/PatrickRoot.github.io
+
+msx:
+  wx:
+    appId: wx01
+    appSecret: wx01
+    token: wx01
+    key: wx01
+    openId: wx01
+
+  secret:
+    key: msx-key
