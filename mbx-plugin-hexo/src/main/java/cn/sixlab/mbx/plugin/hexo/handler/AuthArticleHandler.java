@@ -27,8 +27,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 @Controller
 @RequestMapping("/auth/article")
@@ -42,13 +44,18 @@ public class AuthArticleHandler extends BaseHandler {
     private StringRedisTemplate template;
     
     @RequestMapping("/list")
-    public String list(ModelMap map, Integer pageNo, Integer pageSize) {
-        return articleList(map, pageNo, pageSize);
+    public String list(ModelMap map) {
+        return articleList(map, 0, 10);
     }
     
-    @RequestMapping("/list/{pageSize}")
-    public String list(ModelMap map, @PathVariable Integer pageSize) {
-        return articleList(map, 0, pageSize);
+    @RequestMapping("/list/{pageNo}")
+    public String list(ModelMap map, @PathVariable Integer pageNo) {
+        return articleList(map, 0, 10);
+    }
+    
+    @RequestMapping("/list/{pageNo}/{pageSize}")
+    public String list(ModelMap map, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+        return articleList(map, pageNo, pageSize);
     }
     
     private String articleList(ModelMap map, Integer pageNo, Integer pageSize) {
@@ -71,6 +78,10 @@ public class AuthArticleHandler extends BaseHandler {
     @RequestMapping("/submit")
     public ModelJson submitArticle(String fileId, String content) {
         ModelJson json = new ModelJson();
+    
+        System.out.println("中文");
+        System.out.println(Base64.getEncoder().encodeToString(content.getBytes()));
+        System.out.println(Base64.getEncoder().encodeToString(content.getBytes(Charset.forName("utf-8"))));
         
         json.setSuccess(service.submitArticle(fileId, content));
         

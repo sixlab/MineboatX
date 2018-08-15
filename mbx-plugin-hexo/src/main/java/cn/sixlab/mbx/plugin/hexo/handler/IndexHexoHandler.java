@@ -28,7 +28,7 @@ public class IndexHexoHandler extends BaseHandler {
 
     @RequestMapping(value = {"", "/"})
     public String index(ModelMap modelMap) {
-        String uri = "/auth/article/list/10";
+        String uri = "/auth/article/list";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         boolean logined = false;
