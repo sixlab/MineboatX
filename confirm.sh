@@ -72,7 +72,7 @@ echo '7. 移动之前的 jar 包'
 mv mbx.jar backup/${t}.jar
 
 echo '8. 移动新的 jar 包'
-cp /var/www/code_repo/MineboatX/mbx-web/target/mbx.jar ./mbx.jar
+cp /var/www/code_repo/mbx/mbx-web/target/mbx.jar ./mbx.jar
 
 echo '9. 启动服务器'
 nohup java -jar mbx.jar &

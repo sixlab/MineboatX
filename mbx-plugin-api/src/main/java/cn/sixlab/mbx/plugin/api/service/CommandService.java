@@ -45,8 +45,8 @@ public class CommandService extends BaseService{
                 hexoGen("/var/www/blogs/");
                 break;
             case "server":
-                pullCode("/var/www/code_repo/MineboatX");
-                mavenServer("/var/www/code_repo/MineboatX");
+                pullCode("/var/www/code_repo/mbx");
+                mavenServer("/var/www/code_repo/mbx");
                 break;
             default:
                 logger.info("没有：" + command);
