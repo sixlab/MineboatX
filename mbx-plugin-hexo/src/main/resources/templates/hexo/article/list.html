@@ -17,7 +17,7 @@
                     <a th:href="@{'/auth/article/edit/'+${archive.fileId}}" target="_blank"
                        th:text="${(archiveStat.index+1)+'. '+archive.title}"></a>
 
-                    <a href="###" th:data-fileId="${archive.fileId}" class="delete">删除</a>
+                    <a href="###" th:data-file-id="${archive.fileId}" class="delete">删除</a>
                 </h2>
                 <!--/*
                 <div class="archive-info"><span class="archive-char-count"
