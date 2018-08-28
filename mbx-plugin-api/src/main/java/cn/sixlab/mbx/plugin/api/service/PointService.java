@@ -149,4 +149,12 @@ public class PointService {
     
         logRepo.save(log);
     }
+    
+    public MbxPoint info() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = userDetails.getUsername();
+        MbxUser user = userRepository.getByUsername(username);
+    
+        return pointRepo.getOne(user.getId());
+    }
 }

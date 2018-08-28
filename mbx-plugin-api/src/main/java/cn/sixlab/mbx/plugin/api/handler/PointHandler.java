@@ -29,6 +29,15 @@ public class PointHandler {
     @Autowired
     private PointService service;
     
+    @PostMapping(value = "/info")
+    public ModelJson info() {
+        ModelJson json = new ModelJson();
+        
+        json.setData(service.info());
+        
+        return json;
+    }
+    
     @PostMapping(value = "/today")
     public ModelJson today() {
         ModelJson json = new ModelJson();
