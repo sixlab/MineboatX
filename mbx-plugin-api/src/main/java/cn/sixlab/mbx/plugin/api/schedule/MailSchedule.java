@@ -72,6 +72,7 @@ public class MailSchedule {
                     sb.append(task.getContent());
                     sb.append("</td></tr>");
                 }
+                sb.append("</tbody></table>");
                 
                 helper.setText(sb.toString(), true);
     
