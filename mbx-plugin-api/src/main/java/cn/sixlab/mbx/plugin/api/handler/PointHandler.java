@@ -11,72 +11,37 @@
  */
 package cn.sixlab.mbx.plugin.api.handler;
 
-import cn.sixlab.mbx.core.common.beans.ModelJson;
-import cn.sixlab.mbx.plugin.api.beans.MbxPointTask;
 import cn.sixlab.mbx.plugin.api.service.PointService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth/point")
+@RequestMapping("/point")
 public class PointHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
     
     @Autowired
     private PointService service;
     
-    @PostMapping(value = "/info")
-    public ModelJson info() {
-        ModelJson json = new ModelJson();
+    @GetMapping(value = "/apps/{year}/{month}/{day}")
+    public String apps(@PathVariable("year") Integer year,
+            @PathVariable("month") Integer month,
+            @PathVariable("day") Integer day, ModelMap modelMap) {
         
-        json.setData(service.info());
+        String scheme = "mineapps://www.sixlab.com/point?year=" + year + "&month=" + month + "&day=" + day;
         
-        return json;
-    }
-    
-    @PostMapping(value = "/today")
-    public ModelJson today() {
-        ModelJson json = new ModelJson();
+        modelMap.put("year", year);
+        modelMap.put("month", month);
+        modelMap.put("day", day);
+        modelMap.put("scheme", scheme);
         
-        json.setData(service.today());
-        
-        return json;
-    }
-    
-    @PostMapping(value = "/exchange")
-    public ModelJson exchange(Integer point, String name) {
-        
-        service.exchange(point, name);
-        
-        return new ModelJson();
-    }
-    
-    @PostMapping(value = "/task/add")
-    public ModelJson taskAdd(MbxPointTask pointTask) {
-        
-        service.taskAdd(pointTask);
-        
-        return new ModelJson();
-    }
-    
-    @PostMapping(value = "/task/modify")
-    public ModelJson taskModify(MbxPointTask pointTask) {
-    
-        service.taskModify(pointTask);
-    
-        return new ModelJson();
-    }
-    
-    @PostMapping(value = "/task/finish")
-    public ModelJson taskFinish(Integer taskId) {
-        
-        service.taskFinish(taskId);
-        
-        return new ModelJson();
+        return "api/apps";
     }
     
 }

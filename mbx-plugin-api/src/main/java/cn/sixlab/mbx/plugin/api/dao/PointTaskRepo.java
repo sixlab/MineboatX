@@ -27,5 +27,7 @@ public interface PointTaskRepo extends JpaRepository<MbxPointTask, Integer> {
                     " and u.finish = false" +
                     " order by u.taskOrder ")
     List<MbxPointTask> selectToday(Integer id, LocalDate now);
+    
+    int countAllByUserIdAndTaskDate(Integer userId, LocalDate taskDate);
 }
 
