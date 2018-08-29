@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -45,10 +46,13 @@ public class MailSchedule {
     
             List<MbxPoint> all = pointRepo.findAll();
             for (MbxPoint mbxPoint : all) {
+                MbxUser one = userRepository.getOne(mbxPoint.getUserId());
+                if(StringUtils.isEmpty(one.getEmail())){
+                    continue;
+                }
                 String url = "https://api.sixlab.cn/point/apps/" + date;
     
                 int count = pointTaskRepo.countAllByUserIdAndTaskDate(mbxPoint.getUserId(), localDate);
-                MbxUser one = userRepository.getOne(mbxPoint.getUserId());
     
                 MimeMessage message = mailSender.createMimeMessage();
                 MimeMessageHelper helper = new MimeMessageHelper(message, true);
