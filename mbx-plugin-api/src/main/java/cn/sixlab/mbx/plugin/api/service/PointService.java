@@ -12,6 +12,7 @@
 package cn.sixlab.mbx.plugin.api.service;
 
 import cn.sixlab.mbx.core.beans.entity.MbxUser;
+import cn.sixlab.mbx.core.common.util.UserUtil;
 import cn.sixlab.mbx.core.dao.repository.UserRepository;
 import cn.sixlab.mbx.plugin.api.beans.MbxPoint;
 import cn.sixlab.mbx.plugin.api.beans.MbxPointLog;
@@ -22,8 +23,6 @@ import cn.sixlab.mbx.plugin.api.dao.PointTaskRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -47,16 +46,14 @@ public class PointService {
     private UserRepository userRepository;
     
     public List<MbxPointTask> today() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
+        String username = UserUtil.getUsername();
         MbxUser user = userRepository.getByUsername(username);
         
         return taskRepo.selectToday(user.getId(), LocalDate.now());
     }
     
     public void taskAdd(MbxPointTask pointTask) {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
+        String username = UserUtil.getUsername();
         MbxUser user = userRepository.getByUsername(username);
         
         pointTask.setFinish(false);
@@ -128,8 +125,7 @@ public class PointService {
     }
     
     public void exchange(Integer point, String name) {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
+        String username = UserUtil.getUsername();
         MbxUser user = userRepository.getByUsername(username);
     
         MbxPoint mbxPoint = pointRepo.getOne(user.getId());
@@ -151,8 +147,7 @@ public class PointService {
     }
     
     public MbxPoint info() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
+        String username = UserUtil.getUsername();
         MbxUser user = userRepository.getByUsername(username);
     
         return pointRepo.getOne(user.getId());
