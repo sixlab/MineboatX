@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,7 +57,7 @@ public class AuthPointHandler {
     }
     
     @PostMapping(value = "/task/add")
-    public ModelJson taskAdd(MbxPointTask pointTask) {
+    public ModelJson taskAdd(@RequestBody MbxPointTask pointTask) {
         
         service.taskAdd(pointTask);
         
@@ -64,7 +65,7 @@ public class AuthPointHandler {
     }
     
     @PostMapping(value = "/task/modify")
-    public ModelJson taskModify(MbxPointTask pointTask) {
+    public ModelJson taskModify(@RequestBody MbxPointTask pointTask) {
     
         service.taskModify(pointTask);
     
